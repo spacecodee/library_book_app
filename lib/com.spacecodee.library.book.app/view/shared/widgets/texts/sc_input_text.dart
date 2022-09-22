@@ -7,6 +7,7 @@ class SCInputText extends StatelessWidget {
   final double hintTextSize;
   final String hintText;
   final bool isPassword;
+  final EdgeInsetsGeometry padding;
 
   const SCInputText({
     Key? key,
@@ -15,12 +16,13 @@ class SCInputText extends StatelessWidget {
     required this.hintText,
     this.isPassword = false,
     required this.hintTextSize,
+    this.padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: padding,
       decoration: BoxDecoration(
         color: SCColors.secondaryMaterial[400],
         border: Border.all(
@@ -29,19 +31,12 @@ class SCInputText extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
       ),
       child: TextFormField(
-        textAlignVertical: isPassword ? TextAlignVertical.center : TextAlignVertical.top,
         obscureText: isPassword,
         style: TextStyle(
           fontSize: fontSize,
           color: textColor,
         ),
         decoration: InputDecoration(
-          suffixIcon: isPassword
-              ? const Icon(Icons.remove_red_eye_outlined,
-                  size: 15,
-                  color: SCColors.accent,
-                  textDirection: TextDirection.rtl)
-              : null,
           hintText: hintText,
           hintStyle: TextStyle(
             fontSize: hintTextSize,
