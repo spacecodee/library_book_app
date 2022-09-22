@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:library_book_app/com.spacecodee.library.book.app/shared/sc_responsive.dart';
+import 'package:library_book_app/com.spacecodee.library.book.app/view/shared/components/utils_components.dart';
 import 'package:library_book_app/com.spacecodee.library.book.app/view/shared/widgets/forms/sc_login_form.dart';
 import 'package:library_book_app/com.spacecodee.library.book.app/view/shared/widgets/texts/sc_text_style.dart';
 
@@ -20,19 +21,7 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         child: Container(
           //gradient
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color(0xff000000),
-                Color(0xff000000),
-                Color(0xFF000000),
-                Color(0xFF000000),
-                Color(0xCC000000),
-              ],
-              begin: Alignment.bottomRight,
-              end: Alignment.topLeft,
-            ),
-          ),
+          decoration: UtilsComponents.getBoxDecoration(),
           width: double.infinity,
           height: myResponsive.height > 600 ? myResponsive.height : null,
           child: SafeArea(

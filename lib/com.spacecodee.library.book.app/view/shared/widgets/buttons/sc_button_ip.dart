@@ -7,12 +7,14 @@ class CsButtonIp extends StatelessWidget {
   final String text;
   final String fontFamily;
   final double fontSize;
+  final bool haveBorder;
 
   const CsButtonIp({
     Key? key,
     required this.text,
     required this.fontFamily,
     required this.fontSize,
+    this.haveBorder = false,
   }) : super(key: key);
 
   @override
@@ -24,10 +26,19 @@ class CsButtonIp extends StatelessWidget {
         horizontal: myResponsive.diagonalPercentage(5),
         vertical: myResponsive.diagonalPercentage(2),
       ),
-      decoration: BoxDecoration(
-        color: SCColors.primary,
-        borderRadius: BorderRadius.circular(5),
-      ),
+      //add border line
+      decoration: !haveBorder
+          ? BoxDecoration(
+              color: SCColors.primary,
+              borderRadius: BorderRadius.circular(5),
+            )
+          : BoxDecoration(
+              border: Border.all(
+                color: SCColors.accent,
+                width: myResponsive.diagonalPercentage(0.1),
+              ),
+              borderRadius: BorderRadius.circular(5),
+            ),
       child: Center(
         child: SCTextStyle(
           text: text,
