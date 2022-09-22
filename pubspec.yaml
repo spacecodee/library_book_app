@@ -51,6 +51,23 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  fonts:
+    - family: Lora
+      fonts:
+        - asset: assets/fonts/lora/Lora-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/lora/Lora-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/lora/Lora-Bold.ttf
+          weight: 700
+    - family: Graphik
+      fonts:
+        - asset: assets/fonts/graphik/Graphik-Regular.otf
+          weight: 400
+        - asset: assets/fonts/graphik/Graphik-Medium.otf
+          weight: 500
+        - asset: assets/fonts/graphik/Graphik-Bold.otf
+          weight: 700
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
