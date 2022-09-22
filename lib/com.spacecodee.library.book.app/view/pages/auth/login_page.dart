@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           width: double.infinity,
-          height: myResponsive.diagonal,
+          height: myResponsive.height > 600 ? myResponsive.height : null,
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
