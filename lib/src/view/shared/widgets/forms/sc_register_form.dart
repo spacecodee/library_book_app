@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:library_book_app/src/providers/checkbox_provider.dart';
 import 'package:library_book_app/src/shared/sc_responsive.dart';
 import 'package:library_book_app/src/view/shared/widgets/buttons/sc_button_ip.dart';
+import 'package:library_book_app/src/view/shared/widgets/checkbox/sc_checkbox.dart';
 import 'package:library_book_app/src/view/shared/widgets/texts/sc_input_text.dart';
 import 'package:library_book_app/src/view/shared/widgets/texts/sc_text_style.dart';
 
-class ScRegisterForm extends StatelessWidget {
+class ScRegisterForm extends ConsumerWidget {
   const ScRegisterForm({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final myResponsive = SCResponsive.of(context);
 
     return Form(
@@ -82,10 +85,16 @@ class ScRegisterForm extends StatelessWidget {
           SizedBox(height: myResponsive.diagonalPercentage(5)),
           Row(
             children: [
-              Checkbox(
-                value: false,
-                onChanged: (value) {},
+              ScCheckbox(
+                onTap: () {
+                  ref.read(checkboxProvider.notifier).changedCheckbox();
+                },
+                value: ref.watch(checkboxProvider),
+                size: myResponsive.widthPercentage(6.5),
+                borderSize: myResponsive.widthPercentage(0.5),
+                iconSize: myResponsive.widthPercentage(4.8),
               ),
+              SizedBox(width: myResponsive.diagonalPercentage(1)),
               SCTextStyle(
                 text: 'I agree to the Terms and Conditions',
                 fontSize: myResponsive.widthPercentage(4),
@@ -93,13 +102,13 @@ class ScRegisterForm extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(height: myResponsive.diagonalPercentage(1.5)),
           CsButtonIp(
             onTap: () {},
             text: 'Start Reading',
             fontFamily: 'Lora',
             fontSize: myResponsive.widthPercentage(4.2),
           ),
-          SizedBox(height: myResponsive.diagonalPercentage(1.5)),
         ],
       ),
     );
