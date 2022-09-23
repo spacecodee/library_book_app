@@ -1,5 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:library_book_app/src/shared/sc_responsive.dart';
+
+import 'package:library_book_app/src/view/shared/widgets/buttons/sc_button_flat.dart';
 import 'package:library_book_app/src/view/shared/widgets/buttons/sc_button_ip.dart';
 import 'package:library_book_app/src/view/shared/widgets/texts/sc_input_text.dart';
 import 'package:library_book_app/src/view/shared/widgets/texts/sc_text_style.dart';
@@ -72,10 +75,11 @@ class ScLoginForm extends StatelessWidget {
                 fontSize: myResponsive.widthPercentage(3),
               ),
               SizedBox(width: myResponsive.diagonalPercentage(.5)),
-              SCTextStyle(
+              ScButtonFlat(
+                onTap: () => context.router.pushNamed('/register'),
                 text: 'Register here',
                 fontSize: myResponsive.widthPercentage(3),
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w600,
               )
             ],
           )

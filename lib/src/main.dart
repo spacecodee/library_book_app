@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:library_book_app/src/routes/app_router.gr.dart';
 import 'package:library_book_app/src/shared/sc_colors.dart';
-import 'package:library_book_app/src/view/pages/auth/register_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,12 +28,6 @@ class MyApp extends StatelessWidget {
           cardColor: SCColors.primaryMaterial,
         ),
       ),
-      builder: (_, child) {
-        return ScrollConfiguration(
-          behavior: const ScrollBehavior(),
-          child: child!,
-        );
-      },
     );
   }
 }
