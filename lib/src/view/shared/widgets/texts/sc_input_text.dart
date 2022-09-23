@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:library_book_app/com.spacecodee.library.book.app/shared/sc_colors.dart';
+import 'package:library_book_app/src/shared/sc_colors.dart';
 
 class SCInputText extends StatelessWidget {
   final Color textColor;
@@ -8,6 +8,7 @@ class SCInputText extends StatelessWidget {
   final String hintText;
   final bool isPassword;
   final EdgeInsetsGeometry padding;
+  final TextInputType keyboardType;
 
   const SCInputText({
     Key? key,
@@ -17,6 +18,7 @@ class SCInputText extends StatelessWidget {
     this.isPassword = false,
     required this.hintTextSize,
     this.padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+    this.keyboardType = TextInputType.text,
   }) : super(key: key);
 
   @override
@@ -31,6 +33,7 @@ class SCInputText extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
       ),
       child: TextFormField(
+        keyboardType: keyboardType,
         obscureText: isPassword,
         style: TextStyle(
           fontSize: fontSize,

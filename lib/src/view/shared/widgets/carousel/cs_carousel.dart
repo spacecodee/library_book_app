@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:library_book_app/com.spacecodee.library.book.app/shared/sc_responsive.dart';
-import 'package:library_book_app/com.spacecodee.library.book.app/shared/utils.dart';
+import 'package:library_book_app/src/shared/sc_responsive.dart';
+import 'package:library_book_app/src/shared/utils.dart';
 
 class ScCarousel extends StatelessWidget {
   const ScCarousel({Key? key}) : super(key: key);

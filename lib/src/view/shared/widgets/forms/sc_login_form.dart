@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:library_book_app/com.spacecodee.library.book.app/shared/sc_responsive.dart';
-import 'package:library_book_app/com.spacecodee.library.book.app/view/shared/widgets/buttons/sc_button_ip.dart';
-import 'package:library_book_app/com.spacecodee.library.book.app/view/shared/widgets/texts/sc_input_text.dart';
-import 'package:library_book_app/com.spacecodee.library.book.app/view/shared/widgets/texts/sc_text_style.dart';
+import 'package:library_book_app/src/shared/sc_responsive.dart';
+import 'package:library_book_app/src/view/shared/widgets/buttons/sc_button_ip.dart';
+import 'package:library_book_app/src/view/shared/widgets/texts/sc_input_text.dart';
+import 'package:library_book_app/src/view/shared/widgets/texts/sc_text_style.dart';
 
 class ScLoginForm extends StatelessWidget {
   const ScLoginForm({Key? key}) : super(key: key);
@@ -18,6 +18,7 @@ class ScLoginForm extends StatelessWidget {
           SCTextStyle(
             text: 'Username',
             fontSize: myResponsive.widthPercentage(4),
+            fontFamily: 'Lora',
           ),
           SizedBox(height: myResponsive.diagonalPercentage(1)),
           SCInputText(
@@ -33,6 +34,7 @@ class ScLoginForm extends StatelessWidget {
           SCTextStyle(
             text: 'Password',
             fontSize: myResponsive.widthPercentage(4),
+            fontFamily: 'Lora',
           ),
           SizedBox(height: myResponsive.heightPercentage(1)),
           SCInputText(
@@ -56,6 +58,7 @@ class ScLoginForm extends StatelessWidget {
           SizedBox(height: myResponsive.diagonalPercentage(5)),
           //button center with primary color
           CsButtonIp(
+            onTap: () {},
             text: 'Log In',
             fontFamily: 'Lora',
             fontSize: myResponsive.widthPercentage(4.2),

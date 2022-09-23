@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:library_book_app/com.spacecodee.library.book.app/shared/sc_responsive.dart';
-import 'package:library_book_app/com.spacecodee.library.book.app/view/shared/components/utils_components.dart';
-import 'package:library_book_app/com.spacecodee.library.book.app/view/shared/widgets/buttons/sc_button_ip.dart';
-import 'package:library_book_app/com.spacecodee.library.book.app/view/shared/widgets/carousel/cs_carousel.dart';
-import 'package:library_book_app/com.spacecodee.library.book.app/view/shared/widgets/texts/sc_text_style.dart';
+import 'package:library_book_app/src/shared/sc_responsive.dart';
+import 'package:library_book_app/src/view/shared/components/utils_components.dart';
+import 'package:library_book_app/src/view/shared/widgets/buttons/sc_button_ip.dart';
+import 'package:library_book_app/src/view/shared/widgets/carousel/cs_carousel.dart';
+import 'package:library_book_app/src/view/shared/widgets/texts/sc_text_style.dart';
 
 class InitApp extends StatelessWidget {
   const InitApp({Key? key}) : super(key: key);
@@ -40,12 +41,14 @@ class InitApp extends StatelessWidget {
                 ),
                 SizedBox(height: myResponsive.diagonalPercentage(5)),
                 CsButtonIp(
+                  onTap: () => context.router.pushNamed('/login'),
                   text: 'Log in',
                   fontFamily: 'Lora',
                   fontSize: myResponsive.diagonalPercentage(2),
                 ),
                 SizedBox(height: myResponsive.diagonalPercentage(2)),
                 CsButtonIp(
+                  onTap: () => context.router.pushNamed('/register'),
                   text: 'Register',
                   fontFamily: 'Lora',
                   fontSize: myResponsive.diagonalPercentage(2),

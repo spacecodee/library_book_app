@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:library_book_app/com.spacecodee.library.book.app/shared/sc_colors.dart';
+import 'package:library_book_app/src/shared/sc_colors.dart';
 
 class SCTextStyle extends StatelessWidget {
   final String text;
