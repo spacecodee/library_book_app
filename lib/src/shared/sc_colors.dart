@@ -7,6 +7,7 @@ class SCColors {
   static const int _backgroundColor = _secondaryColor;
   static const int _surfaceColor = 0xFF8A8A8A;
   static const int _errorColor = 0xFFD72B2B;
+  static const int _freeColor = 0xff000000;
 
   //colors
   static const Color primary = Color(_primaryColor);
@@ -15,6 +16,7 @@ class SCColors {
   static const Color background = Color(_backgroundColor);
   static const Color surface = Color(_surfaceColor);
   static const Color error = Color(_errorColor);
+  static const Color freeColor = Color(_freeColor);
 
   //material color
   static const MaterialColor primaryMaterial = MaterialColor(

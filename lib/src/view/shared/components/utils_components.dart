@@ -16,4 +16,19 @@ class UtilsComponents {
       ),
     );
   }
+  static Decoration getBoxDecoration2() {
+    return const BoxDecoration(
+      gradient: LinearGradient(
+        colors: [
+          Color(0xFF303030),
+          Color(0xFF303030),
+          Color(0xFF303030),
+          Color(0xFF303030),
+          Color(0xCC303030),
+        ],
+        begin: Alignment.bottomRight,
+        end: Alignment.topLeft,
+      ),
+    );
+  }
 }
