@@ -30,10 +30,13 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_svg: ^1.1.5
+  carousel_slider: ^4.1.1
+  auto_route: ^5.0.1
+  flutter_riverpod: ^2.0.0-dev.9
 
 dev_dependencies:
   flutter_test:
@@ -45,12 +48,35 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  auto_route_generator: ^5.0.1
+  build_runner:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - assets/icon/
+    - assets/img/
+
+  fonts:
+    - family: Lora
+      fonts:
+        - asset: assets/fonts/lora/Lora-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/lora/Lora-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/lora/Lora-Bold.ttf
+          weight: 700
+    - family: Graphik
+      fonts:
+        - asset: assets/fonts/graphik/Graphik-Regular.otf
+          weight: 400
+        - asset: assets/fonts/graphik/Graphik-Medium.otf
+          weight: 500
+        - asset: assets/fonts/graphik/Graphik-Bold.otf
+          weight: 700
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
