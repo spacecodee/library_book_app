@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       routeInformationParser: _appRouter.defaultRouteParser(),
       routerDelegate: _appRouter.delegate(),
       debugShowCheckedModeBanner: false,
-      title: 'Start Reading | Hello',
+      title: 'Start Reading',
       theme: ThemeData(
         fontFamily: 'Graphik',
         colorScheme: ColorScheme.fromSwatch(
