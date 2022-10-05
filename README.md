@@ -24,6 +24,9 @@ An application where everyone can read theirs favorites books
 - `git branch -d <nombre-rama>` = Eliminar una rama
 - `git merge <nombre-rama>` = Unir los cambios de la rama actual con la rama especificada
 - `git switch -c <nombre-rama>` = Crear una rama y cambiar a ella
+- `git branch set-upstream-to=origin/<remote-branch> <nombre-rama>` = Enlazar la rama actual con el repositorio remoto
+- `git branch -vv` = Ver las ramas y su estado
+- `git branch -m <nombre-rama>` = Renombrar una rama
 
 ## Getting Started
 
