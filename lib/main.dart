@@ -7,9 +7,11 @@ void main() {
   runApp(ProviderScope(child: MyApp()));
 }
 
+/// This is the main application widget.
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   final _appRouter = AppRouter();
+  static const String title = 'Library Book App';
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       routeInformationParser: _appRouter.defaultRouteParser(),
       routerDelegate: _appRouter.delegate(),
       debugShowCheckedModeBanner: false,
-      title: 'Start Reading',
+      title: MyApp.title,
       theme: ThemeData(
         fontFamily: 'Graphik',
         colorScheme: ColorScheme.fromSwatch(
