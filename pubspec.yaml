@@ -58,7 +58,6 @@ dev_dependencies:
 flutter:
   assets:
     - assets/icon/
-    - assets/img/
 
   fonts:
     - family: Lora
