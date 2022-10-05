@@ -8,6 +8,26 @@ An application where everyone can read theirs favorites books
 - Pascal Case (ContarElementos) -> Clases
 - Camel Case (contarElementos) -> Variables, métodos, funciones
 
+## Carpetas
+
+- assets = Imágenes, iconos, etc.
+- lib = Código fuente
+- test = Archivos de pruebas
+- android = Archivos de configuración de Android
+- ios = Archivos de configuración de iOS
+- lib/main.dart = Archivo principal de la aplicación
+- lib/core = Corazón de la aplicación (dto, interfaces, etc.)
+- lib/guards = Archivos que protegen las rutas
+- lib/providers = Archivos que proveen información a la aplicación
+- lib/routes = Archivos que definen las rutas de la aplicación
+- lib/service = Archivos que consumen servicios
+- lib/shared = Archivos que se comparten en toda la aplicación
+- lib/view = Archivos que definen las vistas de la aplicación (pages, widgets, etc.)
+- lib/view/pages = Archivos que definen las páginas de la aplicación
+- lib/view/shared = Archivos que se comparten en toda la aplicación (widgets, etc.)
+- lib/view/shared/widgets = Archivos que definen los widgets de la aplicación (buttons, inputs, etc.)
+- lib/view/shared/components = Archivos que definen los componentes de la aplicación
+
 ## ¿Cómo escribir comentarios?
 
 - Comentarios de una línea: /// Comentario
