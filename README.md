@@ -2,6 +2,17 @@
 
 An application where everyone can read theirs favorites books
 
+## Código para correr el proyecto
+
+```bash
+flutter pub get # para instalar las dependencias
+flutter run # para correr el proyecto
+
+##comandos para auto_route
+flutter packages pub run build_runner watch # para correr el watcher
+flutter packages pub run build_runner build # para correr el builder
+```
+
 ## ¿Cómo escribir código?
 
 - Snake Case (contar_elementos) -> Nombres de archivos
