@@ -13,11 +13,10 @@ class HomePage extends StatelessWidget {
       children: [
         Row(
           children: [
-      Icon(Icons.search, color: SCColors.accent),
+            Icon(Icons.search, color: SCColors.accent),
           ],
         ),
       ],
     );
-
   }
 }
