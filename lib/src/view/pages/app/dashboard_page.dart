@@ -10,6 +10,7 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: AutoTabsScaffold(
+        animationCurve: Curves.easeInOut,
         backgroundColor: SCColors.freeColor,
         routes: const [
           HomeRoute(),
