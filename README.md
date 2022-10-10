@@ -38,6 +38,7 @@ flutter packages pub run build_runner build # para correr el builder
 - lib/view/shared = Archivos que se comparten en toda la aplicación (widgets, etc.)
 - lib/view/shared/widgets = Archivos que definen los widgets de la aplicación (buttons, inputs, etc.)
 - lib/view/shared/components = Archivos que definen los componentes de la aplicación
+- git branch -u origin/<server branch> <local branch> # para crear una rama local y apuntarla a una rama remota
 
 ## ¿Cómo escribir comentarios?
 
