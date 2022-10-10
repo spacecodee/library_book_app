@@ -8,41 +8,44 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AutoTabsScaffold(
-      backgroundColor: SCColors.freeColor,
-      routes: const [
-        HomeRoute(),
-        LibraryRoute(),
-        UserRoute(),
-      ],
-      bottomNavigationBuilder: (_, tabsRouter) {
-        return BottomNavigationBar(
-          currentIndex: tabsRouter.activeIndex,
-          onTap: tabsRouter.setActiveIndex,
-          backgroundColor: SCColors.freeColor,
-          selectedItemColor: SCColors.primary,
-          unselectedItemColor: SCColors.accent,
-          items: const [
-            BottomNavigationBarItem(
-              label: 'Home',
-              icon: Icon(Icons.home, color: SCColors.accent),
-              activeIcon: Icon(Icons.home_filled, color: SCColors.primary),
-            ),
-            BottomNavigationBarItem(
-              label: 'Library',
-              icon: Icon(Icons.library_books, color: SCColors.accent),
-              activeIcon:
-                  Icon(Icons.library_books_outlined, color: SCColors.primary),
-            ),
-            BottomNavigationBarItem(
-              label: 'User',
-              icon: Icon(Icons.person_pin, color: SCColors.accent),
-              activeIcon:
-                  Icon(Icons.person_pin_circle, color: SCColors.primary),
-            ),
-          ],
-        );
-      },
+    return SafeArea(
+      child: AutoTabsScaffold(
+        animationCurve: Curves.easeInOut,
+        backgroundColor: SCColors.freeColor,
+        routes: const [
+          HomeRoute(),
+          LibraryRoute(),
+          UserRoute(),
+        ],
+        bottomNavigationBuilder: (_, tabsRouter) {
+          return BottomNavigationBar(
+            currentIndex: tabsRouter.activeIndex,
+            onTap: tabsRouter.setActiveIndex,
+            backgroundColor: SCColors.freeColor,
+            selectedItemColor: SCColors.primary,
+            unselectedItemColor: SCColors.accent,
+            items: const [
+              BottomNavigationBarItem(
+                label: 'Home',
+                icon: Icon(Icons.home, color: SCColors.accent),
+                activeIcon: Icon(Icons.home_filled, color: SCColors.primary),
+              ),
+              BottomNavigationBarItem(
+                label: 'Library',
+                icon: Icon(Icons.library_books, color: SCColors.accent),
+                activeIcon:
+                    Icon(Icons.library_books_outlined, color: SCColors.primary),
+              ),
+              BottomNavigationBarItem(
+                label: 'User',
+                icon: Icon(Icons.person_pin, color: SCColors.accent),
+                activeIcon:
+                    Icon(Icons.person_pin_circle, color: SCColors.primary),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }
