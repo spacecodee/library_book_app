@@ -3,6 +3,7 @@ import 'package:library_book_app/src/shared/sc_colors.dart';
 
 class SCInputText extends StatelessWidget {
   final Color textColor;
+  final Color hintTextColor;
   final double fontSize;
   final double hintTextSize;
   final String hintText;
@@ -13,6 +14,7 @@ class SCInputText extends StatelessWidget {
   const SCInputText({
     Key? key,
     this.textColor = SCColors.accent,
+    this.hintTextColor = SCColors.accent,
     required this.fontSize,
     required this.hintText,
     this.isPassword = false,
@@ -43,7 +45,7 @@ class SCInputText extends StatelessWidget {
           hintText: hintText,
           hintStyle: TextStyle(
             fontSize: hintTextSize,
-            color: SCColors.accentMaterial[500],
+            color: hintTextColor,
           ),
           border: InputBorder.none,
         ),
