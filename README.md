@@ -38,7 +38,6 @@ flutter packages pub run build_runner build # para correr el builder
 - lib/view/shared = Archivos que se comparten en toda la aplicación (widgets, etc.)
 - lib/view/shared/widgets = Archivos que definen los widgets de la aplicación (buttons, inputs, etc.)
 - lib/view/shared/components = Archivos que definen los componentes de la aplicación
-- git branch -u origin/<server branch> <local branch> # para crear una rama local y apuntarla a una rama remota
 
 ## ¿Cómo escribir comentarios?
 
@@ -46,19 +45,20 @@ flutter packages pub run build_runner build # para correr el builder
 
 ## Comandos de git
 
-- `git add .` = Agregar todos los archivos al stage (preparar archivos para hacer commit)
-- `git commit -m "Mensaje"` = Guardar los cambios en la rama actual
-- `git push -u origin <remote-repository>` o `git push`= Subir los cambios a la rama actual del repositorio remoto
-- `git pull` = Traer los cambios del repositorio remoto a la rama actual
-- `git checkout -b <nombre-rama>` = Crear una rama y cambiar a ella
-- `git checkout <nombre-rama>` = Cambiar a una rama
+- `git add .` Agregar todos los archivos al stage (preparar archivos para hacer commit)
+- `git commit -m "Mensaje"` Guardar los cambios en la rama actual
+- `git push -u origin <remote-repository>` o `git push` Subir los cambios a la rama actual del repositorio remoto
+- `git pull` Traer los cambios del repositorio remoto a la rama actual
+- `git checkout -b <nombre-rama>` Crear una rama y cambiar a ella
+- `git checkout <nombre-rama>` Cambiar a una rama
 - `git branch` = Ver las ramas
-- `git branch -d <nombre-rama>` = Eliminar una rama
-- `git merge <nombre-rama>` = Unir los cambios de la rama actual con la rama especificada
-- `git switch -c <nombre-rama>` = Crear una rama y cambiar a ella
-- `git branch set-upstream-to=origin/<remote-branch> <nombre-rama>` = Enlazar la rama actual con el repositorio remoto
-- `git branch -vv` = Ver las ramas y su estado
-- `git branch -m <nombre-rama>` = Renombrar una rama
+- `git branch -d <nombre-rama>` Eliminar una rama
+- `git merge <nombre-rama>` Unir los cambios de la rama actual con la rama especificada
+- `git switch -c <nombre-rama>` Crear una rama y cambiar a ella
+- `git branch set-upstream-to=origin/<remote-branch> <nombre-rama>` Enlazar la rama actual con el repositorio remoto
+- `git branch -vv` Ver las ramas y su estado
+- `git branch -m <nombre-rama>` Renombrar una rama
+- `git branch -u origin/<server branch> <local branch>` para crear una rama local y apuntarla a una rama remota
 
 ## Getting Started
 
