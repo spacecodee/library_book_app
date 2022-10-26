@@ -16,8 +16,8 @@ import 'package:flutter/material.dart' as _i9;
 
 import '../view/pages/app/dashboard_page.dart' as _i4;
 import '../view/pages/app/home/home_page.dart' as _i5;
-import '../view/pages/app/library_page.dart' as _i6;
-import '../view/pages/app/user_page.dart' as _i7;
+import '../view/pages/app/library/library_page.dart' as _i6;
+import '../view/pages/app/user/user_page.dart' as _i7;
 import '../view/pages/auth/login_page.dart' as _i2;
 import '../view/pages/auth/register_page.dart' as _i3;
 import '../view/pages/home/init_app.dart' as _i1;
