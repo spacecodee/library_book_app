@@ -33,7 +33,6 @@ class homePage extends StatelessWidget{
                               _profile(),
                               _cat(),
                               _iconstab(),
-
                             ],
                           ),
                         ],
@@ -45,8 +44,8 @@ class homePage extends StatelessWidget{
                 padding: EdgeInsets.symmetric(horizontal: 40.0),
                 sliver: SliverGrid.count(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 30.0,
-                  mainAxisSpacing: 20.0,
+                  crossAxisSpacing: 20.0,
+                  mainAxisSpacing: 10.0,
                   children: [
                     _library1(),
                     _library2(),
@@ -56,7 +55,6 @@ class homePage extends StatelessWidget{
                 )
             )
           ],
-
         )
     );
   }
@@ -78,7 +76,6 @@ Widget _profile() {
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                     fontSize: 24.0))),
-
         Container(
             margin: const EdgeInsets.symmetric(vertical: 10.0),
             child: const Text("Charles Perrault",
@@ -93,7 +90,6 @@ Widget _profile() {
 
 Widget _cat(){
   return Container(
-
     color: Color.fromRGBO(0, 0, 0, 0.2),
     padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 15.0),
     child: Row    (
@@ -180,7 +176,6 @@ Widget _library1(){
     )
   );
 }
-
 Widget _library2(){
   return Container(
       child: ClipRRect(
@@ -194,7 +189,6 @@ Widget _library2(){
       )
   );
 }
-
 Widget _library3(){
   return Container(
       child: ClipRRect(
