@@ -1,35 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Lectura',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        cardColor: Colors.black,
-      ),
-      home: MyHomePage(title: 'Pagina de lectura'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+class ViewPdf extends StatefulWidget {
+  ViewPdf({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _ViewPdfState createState() => _ViewPdfState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _ViewPdfState extends State<ViewPdf> {
   late PdfViewerController _pdfViewerController;
   final GlobalKey<SfPdfViewerState> _pdfViewerStateKey = GlobalKey();
 
@@ -38,6 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _pdfViewerController = PdfViewerController();
     super.initState();
   }
+
 //
   @override
   Widget build(BuildContext context) {
