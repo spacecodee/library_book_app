@@ -103,7 +103,7 @@ class ScRegisterForm extends ConsumerWidget {
             ],
           ),
           SizedBox(height: myResponsive.diagonalPercentage(1.5)),
-          CsButtonIp(
+          ScButtonIp(
             onTap: () {},
             text: 'Start Reading',
             fontFamily: 'Lora',

@@ -1,11 +1,22 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:library_book_app/src/core/dto/book_dto.dart';
+import 'package:library_book_app/src/routes/app_router.gr.dart';
 import 'package:library_book_app/src/shared/sc_responsive.dart';
-import 'package:library_book_app/src/shared/utils.dart';
 import 'package:library_book_app/src/view/shared/widgets/containers/image_card_section.dart';
 import 'package:library_book_app/src/view/shared/widgets/image/image_artwork.dart';
 
 class ScCardCarousel extends StatelessWidget {
-  const ScCardCarousel({Key? key}) : super(key: key);
+  final List<BookDto> books;
+  final double width;
+  final double height;
+
+  const ScCardCarousel({
+    Key? key,
+    required this.books,
+    required this.width,
+    required this.height,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,21 +24,32 @@ class ScCardCarousel extends StatelessWidget {
 
     return ListView.builder(
       scrollDirection: Axis.horizontal,
-      itemCount: Utils.getBooks().length,
+      itemCount: books.length,
       itemBuilder: (context, index) {
-        return ImageCarSection(
-          padding: EdgeInsets.only(
-            left: index == 0 ? 0 : responsive.widthPercentage(5),
-          ),
-          space: responsive.heightPercentage(1.5),
-          fontSize: responsive.widthPercentage(3),
-          title: Utils.getBooks().elementAt(index).values.elementAt(0).toString(),
-          subtitle: Utils.getBooks().elementAt(index).values.elementAt(1).toString(),
-          ratingBook: 4,
-          imageArtWork: ImageArtWork(
-            width: responsive.widthPercentage(28),
-            height: responsive.heightPercentage(22),
-            urlImage: Utils.getBooks().elementAt(index).values.elementAt(2).toString(),
+        return InkWell(
+          onTap: () {
+            context.router.push(
+              DashboardRoute(
+                children: [
+                  LibraryRoute(bookId: 1),
+                ],
+              ),
+            );
+          },
+          child: ImageCarSection(
+            padding: EdgeInsets.only(
+              left: index == 0 ? 0 : responsive.widthPercentage(5),
+            ),
+            space: responsive.heightPercentage(1.5),
+            fontSize: responsive.widthPercentage(3),
+            title: books.elementAt(index).name,
+            subtitle: books.elementAt(index).author,
+            ratingBook: 4,
+            imageArtWork: ImageArtWork(
+              width: width,
+              height: height,
+              urlImage: books.elementAt(index).image,
+            ),
           ),
         );
       },

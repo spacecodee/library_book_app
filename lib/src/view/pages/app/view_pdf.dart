@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:library_book_app/src/routes/app_router.gr.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class ViewPdf extends StatefulWidget {
@@ -33,7 +35,15 @@ class _ViewPdfState extends State<ViewPdf> {
           builder: (BuildContext context) {
             return IconButton(
               icon: const Icon(Icons.arrow_back_ios_new),
-              onPressed: () {},
+              onPressed: () {
+                context.router.push(
+                  DashboardRoute(
+                    children: [
+                      BookInfoRoute(bookId: 1),
+                    ],
+                  ),
+                );
+              },
             );
           },
         ),

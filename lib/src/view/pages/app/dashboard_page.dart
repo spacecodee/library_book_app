@@ -12,9 +12,9 @@ class DashboardPage extends StatelessWidget {
       child: AutoTabsScaffold(
         animationCurve: Curves.easeInOut,
         backgroundColor: SCColors.freeColor,
-        routes: const [
+        routes: [
           HomeRoute(),
-          LibraryRoute(),
+          LibraryRoute(bookId: 10),
           UserRoute(),
         ],
         bottomNavigationBuilder: (_, tabsRouter) {

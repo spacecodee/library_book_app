@@ -19,6 +19,7 @@ class ImageArtWork extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         image: DecorationImage(
+          alignment: Alignment.center,
           image: NetworkImage(urlImage),
           fit: BoxFit.cover,
         ),

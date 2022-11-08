@@ -4,6 +4,7 @@ import 'package:library_book_app/src/view/pages/app/dashboard_page.dart';
 import 'package:library_book_app/src/view/pages/app/home/home_page.dart';
 import 'package:library_book_app/src/view/pages/app/library/library_page.dart';
 import 'package:library_book_app/src/view/pages/app/user/user_page.dart';
+import 'package:library_book_app/src/view/pages/app/view_pdf.dart';
 import 'package:library_book_app/src/view/pages/auth/login_page.dart';
 import 'package:library_book_app/src/view/pages/auth/register_page.dart';
 import 'package:library_book_app/src/view/pages/home/init_app.dart';
@@ -17,14 +18,9 @@ import 'package:library_book_app/src/view/pages/home/init_app.dart';
     AutoRoute(path: '/dashboard-page', page: DashboardPage, children: [
       RedirectRoute(path: '', redirectTo: 'home'),
       AutoRoute(path: 'home', page: HomePage, initial: true),
-      AutoRoute(
-        path: 'library',
-        page: LibraryPage,
-        children: [
-          RedirectRoute(path: '', redirectTo: 'book:id'),
-          AutoRoute(path: 'book:id', page: BookInfoPage, initial: true),
-        ],
-      ),
+      AutoRoute(path: 'library/:id', page: LibraryPage),
+      AutoRoute(path: 'book/:id', page: BookInfoPage),
+      AutoRoute(path: 'book-read/:url', page: ViewPdf),
       AutoRoute(path: 'user', page: UserPage),
     ]),
   ],

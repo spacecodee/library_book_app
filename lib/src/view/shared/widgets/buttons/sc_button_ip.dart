@@ -3,7 +3,7 @@ import 'package:library_book_app/src/shared/sc_colors.dart';
 import 'package:library_book_app/src/shared/sc_responsive.dart';
 import 'package:library_book_app/src/view/shared/widgets/texts/sc_text_style.dart';
 
-class CsButtonIp extends StatelessWidget {
+class ScButtonIp extends StatelessWidget {
   final String text;
   final String fontFamily;
   final double fontSize;
@@ -13,7 +13,7 @@ class CsButtonIp extends StatelessWidget {
   final double? width;
   final Color? borderColor;
 
-  const CsButtonIp({
+  const ScButtonIp({
     Key? key,
     required this.text,
     required this.fontSize,

@@ -60,7 +60,7 @@ class ScLoginForm extends StatelessWidget {
           ),
           SizedBox(height: myResponsive.diagonalPercentage(5)),
           //button center with primary color
-          CsButtonIp(
+          ScButtonIp(
             onTap: () {
               context.router.pushNamed('/dashboard-page');
             },

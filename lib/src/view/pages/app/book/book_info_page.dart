@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:library_book_app/src/core/raw/raw_dto.dart';
 import 'package:library_book_app/src/shared/sc_colors.dart';
 import 'package:library_book_app/src/shared/sc_responsive.dart';
 import 'package:library_book_app/src/view/shared/widgets/blur/blur_art_image.dart';
@@ -13,12 +14,16 @@ import 'package:library_book_app/src/view/shared/widgets/texts/sc_label_text.dar
 import 'package:library_book_app/src/view/shared/widgets/texts/sc_text_style.dart';
 
 class BookInfoPage extends StatelessWidget {
-  const BookInfoPage({Key? key}) : super(key: key);
+  final int bookId;
+
+  const BookInfoPage({Key? key, @PathParam('id') this.bookId = 0}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final responsive = SCResponsive.of(context);
     final spaceImageAndText = SCResponsive.of(context).widthPercentage(38);
+
+    print("book id: $bookId");
 
     return SingleChildScrollView(
       child: Container(
@@ -134,7 +139,7 @@ class BookInfoPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CsButtonIp(
+                  ScButtonIp(
                     //width: responsive.widthPercentage(90),
                     padding: EdgeInsets.symmetric(
                       horizontal: responsive.diagonalPercentage(3),
@@ -189,7 +194,11 @@ class BookInfoPage extends StatelessWidget {
                   ),
                   SizedBox(
                     height: responsive.heightPercentage(34),
-                    child: const ScCardCarousel(),
+                    child: ScCardCarousel(
+                      width: responsive.widthPercentage(28),
+                      height: responsive.widthPercentage(43),
+                      books: RawDto.books(),
+                    ),
                   ),
                   SCTextStyle(
                     text: 'Would you like to rate this book?'.toUpperCase(),
@@ -211,7 +220,7 @@ class BookInfoPage extends StatelessWidget {
                   SizedBox(
                     height: responsive.heightPercentage(2),
                   ),
-                  CsButtonIp(
+                  ScButtonIp(
                     padding: EdgeInsets.symmetric(
                       horizontal: responsive.diagonalPercentage(3),
                       vertical: responsive.diagonalPercentage(1.4),

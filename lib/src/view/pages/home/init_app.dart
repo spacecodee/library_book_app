@@ -40,14 +40,14 @@ class InitApp extends StatelessWidget {
                   fontSize: myResponsive.widthPercentage(3.5),
                 ),
                 SizedBox(height: myResponsive.diagonalPercentage(5)),
-                CsButtonIp(
+                ScButtonIp(
                   onTap: () => context.router.pushNamed('/login'),
                   text: 'Log in',
                   fontFamily: 'Lora',
                   fontSize: myResponsive.diagonalPercentage(2),
                 ),
                 SizedBox(height: myResponsive.diagonalPercentage(2)),
-                CsButtonIp(
+                ScButtonIp(
                   onTap: () => context.router.pushNamed('/register'),
                   text: 'Register',
                   fontFamily: 'Lora',
