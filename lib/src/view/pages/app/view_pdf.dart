@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class ViewPdf extends StatefulWidget {
-  ViewPdf({Key? key, required this.title}) : super(key: key);
+  const ViewPdf({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -20,15 +20,14 @@ class _ViewPdfState extends State<ViewPdf> {
     super.initState();
   }
 
-//
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       body: SfPdfViewer.network(
-          'http://www.ataun.eus/BIBLIOTECAGRATUITA/Cl%C3%A1sicos%20en%20Espa%C3%B1ol/Charles%20Perrault/Caperucita%20%20Roja.pdf',
-          controller: _pdfViewerController,
-          key: _pdfViewerStateKey),
+        'http://www.ataun.eus/BIBLIOTECAGRATUITA/Cl%C3%A1sicos%20en%20Espa%C3%B1ol/Charles%20Perrault/Caperucita%20%20Roja.pdf',
+        controller: _pdfViewerController,
+        key: _pdfViewerStateKey,
+      ),
       appBar: AppBar(
         leading: Builder(
           builder: (BuildContext context) {
@@ -66,7 +65,7 @@ class _ViewPdfState extends State<ViewPdf> {
               ))
         ],
       ),
-    ));
+    );
   }
 }
 //

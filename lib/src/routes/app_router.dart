@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:library_book_app/src/view/pages/app/book/book_info_page.dart';
 import 'package:library_book_app/src/view/pages/app/dashboard_page.dart';
 import 'package:library_book_app/src/view/pages/app/home/home_page.dart';
 import 'package:library_book_app/src/view/pages/app/library/library_page.dart';
@@ -14,10 +15,17 @@ import 'package:library_book_app/src/view/pages/home/init_app.dart';
     AutoRoute(path: '/login', page: LoginPage),
     AutoRoute(path: '/register', page: RegisterPage),
     AutoRoute(path: '/dashboard-page', page: DashboardPage, children: [
-      RedirectRoute(path: '', redirectTo: '/home'),
-      AutoRoute(path: '/home', page: HomePage, initial: true),
-      AutoRoute(path: '/library', page: LibraryPage),
-      AutoRoute(path: '/user', page: UserPage),
+      RedirectRoute(path: '', redirectTo: 'home'),
+      AutoRoute(path: 'home', page: HomePage, initial: true),
+      AutoRoute(
+        path: 'library',
+        page: LibraryPage,
+        children: [
+          RedirectRoute(path: '', redirectTo: 'book:id'),
+          AutoRoute(path: 'book:id', page: BookInfoPage, initial: true),
+        ],
+      ),
+      AutoRoute(path: 'user', page: UserPage),
     ]),
   ],
   replaceInRouteName: 'Page,Route',

@@ -9,14 +9,20 @@ class CsButtonIp extends StatelessWidget {
   final double fontSize;
   final bool haveBorder;
   final Function() onTap;
+  final EdgeInsetsGeometry? padding;
+  final double? width;
+  final Color? borderColor;
 
   const CsButtonIp({
     Key? key,
     required this.text,
-    required this.fontFamily,
     required this.fontSize,
     required this.onTap,
+    this.padding,
+    this.width,
+    this.borderColor,
     this.haveBorder = false,
+    this.fontFamily = 'Graphik',
   }) : super(key: key);
 
   @override
@@ -26,19 +32,22 @@ class CsButtonIp extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: myResponsive.diagonalPercentage(5),
-          vertical: myResponsive.diagonalPercentage(2),
-        ),
+        width: width,
+        padding: (padding == null)
+            ? EdgeInsets.symmetric(
+                horizontal: myResponsive.diagonalPercentage(5),
+                vertical: myResponsive.diagonalPercentage(2),
+              )
+            : padding,
         //add border line
         decoration: !haveBorder
             ? BoxDecoration(
-                color: SCColors.primary,
+                color: borderColor ?? SCColors.primary,
                 borderRadius: BorderRadius.circular(5),
               )
             : BoxDecoration(
                 border: Border.all(
-                  color: SCColors.accent,
+                  color: borderColor ?? SCColors.accent,
                   width: myResponsive.diagonalPercentage(0.1),
                 ),
                 borderRadius: BorderRadius.circular(5),

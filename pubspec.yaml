@@ -38,6 +38,7 @@ dependencies:
   auto_route: ^5.0.1
   flutter_riverpod: ^2.0.0-dev.9
   syncfusion_flutter_pdfviewer: ^20.3.48
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:

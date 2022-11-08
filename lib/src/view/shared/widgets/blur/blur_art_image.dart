@@ -11,6 +11,7 @@ class BlurArtImage extends StatelessWidget {
   final double filter;
   final Color colorFilter;
   final BoxFit fit;
+  final void Function()? onTap;
 
   const BlurArtImage({
     Key? key,
@@ -20,6 +21,7 @@ class BlurArtImage extends StatelessWidget {
     this.colorFilter = Colors.white,
     this.imageUrl = 'https://images.cdn2.buscalibre.com/fit-in/360x360/3c/a0/3ca0d5641108924db725e1d9b5971d52.jpg',
     this.fit = BoxFit.cover,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -47,10 +49,13 @@ class BlurArtImage extends StatelessWidget {
         Positioned(
           left: myResponsive.widthPercentage(5),
           top: myResponsive.heightPercentage(3),
-          child: Icon(
-            Icons.arrow_back_ios,
-            color: SCColors.accent,
-            size: myResponsive.widthPercentage(6),
+          child: InkWell(
+            onTap: onTap,
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: SCColors.accent,
+              size: myResponsive.widthPercentage(6),
+            ),
           ),
         ),
         Positioned(

@@ -29,7 +29,9 @@ class HomePage extends StatelessWidget {
             children: [
               // search bar
               ScInputSearch(
-                onTap: () {print("Hello");},
+                onTap: () {
+                  print("Hello");
+                },
                 width: myResponsive.widthPercentage(80),
                 height: myResponsive.heightPercentage(5.5),
                 fontSize: myResponsive.widthPercentage(4),
