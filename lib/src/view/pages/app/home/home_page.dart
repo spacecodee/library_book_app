@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
           right: responsive.widthPercentage(4),
         ),
         width: responsive.width,
-        height: responsive.heightPercentage(155),
+        height: responsive.heightPercentage(160),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
