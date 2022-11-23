@@ -1,4 +1,4 @@
-import 'package:library_book_app/src/core/dto/book_dto.dart';
+import 'package:library_book_app/src/core/dto/book/book_dto.dart';
 import 'package:library_book_app/src/core/dto/category_book_dto.dart';
 
 class RawDto {

@@ -16,14 +16,15 @@ import 'package:library_book_app/src/view/shared/widgets/texts/sc_text_style.dar
 class BookInfoPage extends StatelessWidget {
   final int bookId;
 
-  const BookInfoPage({Key? key, @PathParam('id') this.bookId = 0}) : super(key: key);
+  const BookInfoPage({
+    Key? key,
+    @PathParam('id') this.bookId = 0,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final responsive = SCResponsive.of(context);
     final spaceImageAndText = SCResponsive.of(context).widthPercentage(38);
-
-    print("book id: $bookId");
 
     return SingleChildScrollView(
       child: Container(

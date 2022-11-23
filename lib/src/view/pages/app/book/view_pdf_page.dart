@@ -3,16 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:library_book_app/src/routes/app_router.gr.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-class ViewPdf extends StatefulWidget {
-  const ViewPdf({Key? key, required this.title}) : super(key: key);
+class ViewPdfPage extends StatefulWidget {
+  const ViewPdfPage({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
 
   final String title;
 
   @override
-  _ViewPdfState createState() => _ViewPdfState();
+  State<ViewPdfPage> createState() => _ViewPdfPageState();
 }
 
-class _ViewPdfState extends State<ViewPdf> {
+class _ViewPdfPageState extends State<ViewPdfPage> {
   late PdfViewerController _pdfViewerController;
   final GlobalKey<SfPdfViewerState> _pdfViewerStateKey = GlobalKey();
 
@@ -52,12 +55,12 @@ class _ViewPdfState extends State<ViewPdf> {
               onPressed: () {
                 _pdfViewerController.jumpToPage(1);
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_drop_down_circle,
                 color: Colors.white,
               )),
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.settings,
               color: Colors.white,
             ),
@@ -69,7 +72,7 @@ class _ViewPdfState extends State<ViewPdf> {
               onPressed: () {
                 _pdfViewerController.zoomLevel = 1.25;
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.zoom_in,
                 color: Colors.white,
               ))

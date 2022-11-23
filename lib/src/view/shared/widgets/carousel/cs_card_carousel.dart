@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:library_book_app/src/core/dto/book_dto.dart';
+import 'package:library_book_app/src/core/dto/book/book_dto.dart';
 import 'package:library_book_app/src/routes/app_router.gr.dart';
 import 'package:library_book_app/src/shared/sc_responsive.dart';
 import 'package:library_book_app/src/view/shared/widgets/containers/image_card_section.dart';
@@ -28,10 +28,11 @@ class ScCardCarousel extends StatelessWidget {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
+            final int idToSend = books[index].id ?? 0;
             context.router.push(
               DashboardRoute(
                 children: [
-                  LibraryRoute(bookId: 1),
+                  BookInfoRoute(bookId: idToSend),
                 ],
               ),
             );

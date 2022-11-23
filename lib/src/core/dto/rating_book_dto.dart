@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:library_book_app/src/core/dto/book_dto.dart';
+import 'package:library_book_app/src/core/dto/book/book_dto.dart';
 import 'package:library_book_app/src/core/dto/user_client_dto.dart';
 
 RatingBookDto ratingBookDtoFromJson(String str) => RatingBookDto.fromJson(json.decode(str));
