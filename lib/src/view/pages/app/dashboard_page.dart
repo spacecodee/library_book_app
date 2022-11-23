@@ -12,9 +12,8 @@ class DashboardPage extends StatelessWidget {
       child: AutoTabsScaffold(
         animationCurve: Curves.easeInOut,
         backgroundColor: SCColors.freeColor,
-        routes: [
+        routes: const [
           HomeRoute(),
-          LibraryRoute(bookId: 10),
           UserRoute(),
         ],
         bottomNavigationBuilder: (_, tabsRouter) {
@@ -29,12 +28,6 @@ class DashboardPage extends StatelessWidget {
                 label: 'Home',
                 icon: Icon(Icons.home, color: SCColors.accent),
                 activeIcon: Icon(Icons.home_filled, color: SCColors.primary),
-              ),
-              BottomNavigationBarItem(
-                label: 'Library',
-                icon: Icon(Icons.library_books, color: SCColors.accent),
-                activeIcon:
-                    Icon(Icons.library_books_outlined, color: SCColors.primary),
               ),
               BottomNavigationBarItem(
                 label: 'User',
