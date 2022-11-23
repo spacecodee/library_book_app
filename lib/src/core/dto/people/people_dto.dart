@@ -10,32 +10,32 @@ String peopleDtoToJson(PeopleDto data) => json.encode(data.toJson());
 
 class PeopleDto {
   PeopleDto({
-    this.id,
-    this.name,
-    this.surname,
-    this.phone,
-    this.address,
+    this.address = '',
+    this.id = 0,
+    required this.name,
+    this.phone = 0,
+    required this.surname,
   });
 
-  final int? id;
-  final String? name;
-  final String? surname;
-  final int? phone;
-  final String? address;
+  final String address;
+  final int id;
+  final String name;
+  final int phone;
+  final String surname;
 
   factory PeopleDto.fromJson(Map<String, dynamic> json) => PeopleDto(
+        address: json["address"],
         id: json["id"],
         name: json["name"],
-        surname: json["surname"],
         phone: json["phone"],
-        address: json["address"],
+        surname: json["surname"],
       );
 
   Map<String, dynamic> toJson() => {
+        "address": address,
         "id": id,
         "name": name,
-        "surname": surname,
         "phone": phone,
-        "address": address,
+        "surname": surname,
       };
 }

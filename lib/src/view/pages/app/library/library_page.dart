@@ -12,7 +12,7 @@ class LibraryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("id: $bookId");
+    print("id 🙋🏽‍♂️🙋🏽‍♂️: $bookId");
     return const BookInfoPage();
   }
 }
