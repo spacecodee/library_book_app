@@ -12,16 +12,12 @@ import 'package:library_book_app/src/view/shared/widgets/texts/sc_label_text.dar
 import 'package:library_book_app/src/view/shared/widgets/texts/sc_text_style.dart';
 
 class BookInfoPage extends StatelessWidget {
-  final int bookId;
-
   const BookInfoPage({
     Key? key,
-    @PathParam('id') this.bookId = 0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print('id 🙋🏽‍♂️🙋🏽‍♂️: $bookId');
     final responsive = SCResponsive.of(context);
     final spaceImageAndText = SCResponsive.of(context).widthPercentage(38);
 
