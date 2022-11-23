@@ -5,14 +5,9 @@ import 'package:library_book_app/src/view/shared/components/utils_components.dar
 import 'package:library_book_app/src/view/shared/widgets/forms/sc_register_form.dart';
 import 'package:library_book_app/src/view/shared/widgets/texts/sc_text_style.dart';
 
-class RegisterPage extends StatefulWidget {
+class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
-  @override
-  State<RegisterPage> createState() => _RegisterPageState();
-}
-
-class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     final myResponsive = SCResponsive.of(context);
@@ -30,12 +25,12 @@ class _RegisterPageState extends State<RegisterPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  GestureDetector(
+                  InkWell(
                     onTap: () {
                       context.router.pop();
                     },
                     child: Icon(
-                      Icons.arrow_back_ios_new,
+                      Icons.arrow_back,
                       size: myResponsive.widthPercentage(5),
                       color: Theme.of(context).colorScheme.secondary,
                     ),
@@ -49,8 +44,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   SizedBox(height: myResponsive.diagonalPercentage(.5)),
                   SCTextStyle(
-                    text:
-                        'Create a free account and access our vast library of books',
+                    text: 'Create a free account and access our vast library of books',
                     fontSize: myResponsive.heightPercentage(2),
                   ),
                   SizedBox(height: myResponsive.diagonalPercentage(5)),
