@@ -1,15 +1,9 @@
-// To parse this JSON data, do
-//
-//     final categoryBookAndBookDto = categoryBookAndBookDtoFromJson(jsonString);
-
-import 'dart:convert';
-
+import 'package:json_annotation/json_annotation.dart';
 import 'package:library_book_app/src/core/dto/book/book_and_rating_promedio_dto.dart';
 
-CategoryBookAndBookDto categoryBookAndBookDtoFromJson(String str) => CategoryBookAndBookDto.fromJson(json.decode(str));
+part 'category_book_and_book_dto.g.dart';
 
-String categoryBookAndBookDtoToJson(CategoryBookAndBookDto data) => json.encode(data.toJson());
-
+@JsonSerializable()
 class CategoryBookAndBookDto {
   CategoryBookAndBookDto({
     this.bookDto,
@@ -17,19 +11,16 @@ class CategoryBookAndBookDto {
     this.name,
   });
 
-  final List<BookAndRatingPromedioDto>? bookDto;
-  final int? id;
-  final String? name;
+  late final List<BookAndRatingPromedioDto>? bookDto;
+  late final int? id;
+  late final String? name;
 
-  factory CategoryBookAndBookDto.fromJson(Map<String, dynamic> json) => CategoryBookAndBookDto(
-        bookDto: List<BookAndRatingPromedioDto>.from(json["bookDto"].map((x) => BookAndRatingPromedioDto.fromJson(x))),
-        id: json["id"],
-        name: json["name"],
-      );
+  factory CategoryBookAndBookDto.fromJson(Map<String, dynamic> json) => _$CategoryBookAndBookDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "bookDto": List<dynamic>.from(bookDto!.map((x) => x.toJson())),
-        "id": id,
-        "name": name,
-      };
+  Map<String, dynamic> toJson() => _$CategoryBookAndBookDtoToJson(this);
+
+  @override
+  String toString() {
+    return 'CategoryBookAndBookDto{bookDto: $bookDto, id: $id, name: $name}';
+  }
 }

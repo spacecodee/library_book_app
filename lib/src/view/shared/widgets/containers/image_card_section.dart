@@ -26,7 +26,7 @@ class ImageCarSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding?? const EdgeInsets.all(0),
+      padding: padding ?? const EdgeInsets.all(0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -52,7 +52,11 @@ class ImageCarSection extends StatelessWidget {
           Row(
             children: [
               Icon(
-                (ratingBook >= 2.5) ? Icons.star_outlined : Icons.star_half_outlined,
+                (ratingBook >= 2.5)
+                    ? Icons.star_outlined
+                    : (ratingBook == 0.0)
+                        ? Icons.star_outline
+                        : Icons.star_half_outlined,
                 color: SCColors.primary,
               ),
               SizedBox(

@@ -1,29 +1,23 @@
-// To parse this JSON data, do
-//
-//     final ratingPromedioBookDto = ratingPromedioBookDtoFromJson(jsonString);
+import 'package:json_annotation/json_annotation.dart';
 
-import 'dart:convert';
+part 'rating_promedio_book_dto.g.dart';
 
-RatingPromedioBookDto ratingPromedioBookDtoFromJson(String str) => RatingPromedioBookDto.fromJson(json.decode(str));
-
-String ratingPromedioBookDtoToJson(RatingPromedioBookDto data) => json.encode(data.toJson());
-
+@JsonSerializable()
 class RatingPromedioBookDto {
   RatingPromedioBookDto({
     this.promedioRating,
     this.rating,
   });
 
-  final int? promedioRating;
-  final int? rating;
+  final double? promedioRating;
+  final double? rating;
 
-  factory RatingPromedioBookDto.fromJson(Map<String, dynamic> json) => RatingPromedioBookDto(
-        promedioRating: json["promedioRating"],
-        rating: json["rating"],
-      );
+  factory RatingPromedioBookDto.fromJson(Map<String, dynamic> json) => _$RatingPromedioBookDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "promedioRating": promedioRating,
-        "rating": rating,
-      };
+  Map<String, dynamic> toJson() => _$RatingPromedioBookDtoToJson(this);
+
+  @override
+  String toString() {
+    return 'RatingPromedioBookDto{promedioRating: $promedioRating, rating: $rating}';
+  }
 }

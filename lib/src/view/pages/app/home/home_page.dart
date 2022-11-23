@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:library_book_app/src/core/raw/raw_dto.dart';
+import 'package:library_book_app/src/core/dto/category/book/category_book_and_book_dto.dart';
+import 'package:library_book_app/src/service/category/book/category_book_service.dart';
 import 'package:library_book_app/src/shared/sc_colors.dart';
 import 'package:library_book_app/src/shared/sc_responsive.dart';
 import 'package:library_book_app/src/view/shared/widgets/carousel/cs_card_carousel.dart';
@@ -12,101 +13,76 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final responsive = SCResponsive.of(context);
+    final categoryBookService = CategoryBookService();
 
-    return SingleChildScrollView(
-      child: Container(
-        padding: EdgeInsets.only(
-          top: responsive.widthPercentage(4.5),
-          bottom: responsive.widthPercentage(3),
-          left: responsive.widthPercentage(4),
-          right: responsive.widthPercentage(4),
-        ),
-        width: responsive.width,
-        height: responsive.heightPercentage(160),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ScSearchInput(
-              width: responsive.widthPercentage(80),
-              height: responsive.heightPercentage(5.4),
-              hintText: "Search your favorite book",
-              fontSize: responsive.widthPercentage(3),
-              hintTextSize: responsive.widthPercentage(4),
+    return FutureBuilder(
+      future: categoryBookService.list(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: SCColors.primary,
             ),
-            SizedBox(
-              height: responsive.heightPercentage(2),
+          );
+        } else {
+          final data = snapshot.data as List<CategoryBookAndBookDto>;
+
+          return Padding(
+            padding: EdgeInsets.only(
+              top: responsive.widthPercentage(4.5),
+              bottom: responsive.widthPercentage(3),
+              left: responsive.widthPercentage(4),
+              right: responsive.widthPercentage(4),
             ),
-            SCTextStyle(
-              text: 'Popular Books'.toUpperCase(),
-              fontWeight: FontWeight.w600,
-              color: SCColors.accent,
-              fontSize: responsive.widthPercentage(3.5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ScSearchInput(
+                  width: responsive.widthPercentage(80),
+                  height: responsive.heightPercentage(5.4),
+                  hintText: "Search your favorite book",
+                  fontSize: responsive.widthPercentage(3),
+                  hintTextSize: responsive.widthPercentage(4),
+                ),
+                SizedBox(
+                  height: responsive.heightPercentage(2),
+                ),
+                SizedBox(
+                  width: responsive.width,
+                  height: responsive.heightPercentage(72),
+                  child: ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SCTextStyle(
+                            text: data[index].name!.toUpperCase(),
+                            fontWeight: FontWeight.w600,
+                            color: SCColors.accent,
+                            fontSize: responsive.widthPercentage(3.5),
+                          ),
+                          SizedBox(
+                            height: responsive.widthPercentage(4.5),
+                          ),
+                          SizedBox(
+                            height: responsive.heightPercentage(32),
+                            child: ScCardCarousel(
+                              width: responsive.widthPercentage(28),
+                              height: responsive.widthPercentage(43),
+                              books: data[index].bookDto!,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: responsive.widthPercentage(4),
-            ),
-            SizedBox(
-              height: responsive.heightPercentage(32),
-              child: ScCardCarousel(
-                width: responsive.widthPercentage(28),
-                height: responsive.widthPercentage(43),
-                books: RawDto.books(),
-              ),
-            ),
-            SCTextStyle(
-              text: 'Horror Books'.toUpperCase(),
-              fontWeight: FontWeight.w600,
-              color: SCColors.accent,
-              fontSize: responsive.widthPercentage(3.5),
-            ),
-            SizedBox(
-              height: responsive.widthPercentage(4),
-            ),
-            SizedBox(
-              height: responsive.heightPercentage(32),
-              child: ScCardCarousel(
-                width: responsive.widthPercentage(28),
-                height: responsive.widthPercentage(43),
-                books: RawDto.books(),
-              ),
-            ),
-            SCTextStyle(
-              text: 'Fantasy Books'.toUpperCase(),
-              fontWeight: FontWeight.w600,
-              color: SCColors.accent,
-              fontSize: responsive.widthPercentage(3.5),
-            ),
-            SizedBox(
-              height: responsive.widthPercentage(4),
-            ),
-            SizedBox(
-              height: responsive.heightPercentage(32),
-              child: ScCardCarousel(
-                width: responsive.widthPercentage(28),
-                height: responsive.widthPercentage(43),
-                books: RawDto.books(),
-              ),
-            ),
-            SCTextStyle(
-              text: 'Action Books'.toUpperCase(),
-              fontWeight: FontWeight.w600,
-              color: SCColors.accent,
-              fontSize: responsive.widthPercentage(3.5),
-            ),
-            SizedBox(
-              height: responsive.widthPercentage(4),
-            ),
-            SizedBox(
-              height: responsive.heightPercentage(32),
-              child: ScCardCarousel(
-                width: responsive.widthPercentage(28),
-                height: responsive.widthPercentage(43),
-                books: RawDto.books(),
-              ),
-            ),
-          ],
-        ),
-      ),
+          );
+        }
+      },
     );
   }
 }

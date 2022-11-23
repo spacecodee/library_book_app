@@ -18,7 +18,7 @@ class RegisterPage extends StatelessWidget {
           //gradient
           decoration: UtilsComponents.getBoxDecoration(),
           width: double.infinity,
-          height: myResponsive.height,
+          height: myResponsive.heightPercentage(102),
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
@@ -47,7 +47,7 @@ class RegisterPage extends StatelessWidget {
                     text: 'Create a free account and access our vast library of books',
                     fontSize: myResponsive.heightPercentage(2),
                   ),
-                  SizedBox(height: myResponsive.diagonalPercentage(5)),
+                  SizedBox(height: myResponsive.diagonalPercentage(3)),
                   const ScRegisterForm(),
                 ],
               ),

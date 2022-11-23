@@ -1,16 +1,9 @@
-// To parse this JSON data, do
-//
-//     final bookAndRatingPromedioDto = bookAndRatingPromedioDtoFromJson(jsonString);
-
-import 'dart:convert';
-
+import 'package:json_annotation/json_annotation.dart';
 import 'package:library_book_app/src/core/dto/rating/book/rating_promedio_book_dto.dart';
 
-BookAndRatingPromedioDto bookAndRatingPromedioDtoFromJson(String str) =>
-    BookAndRatingPromedioDto.fromJson(json.decode(str));
+part 'book_and_rating_promedio_dto.g.dart';
 
-String bookAndRatingPromedioDtoToJson(BookAndRatingPromedioDto data) => json.encode(data.toJson());
-
+@JsonSerializable()
 class BookAndRatingPromedioDto {
   BookAndRatingPromedioDto({
     this.author,
@@ -26,19 +19,12 @@ class BookAndRatingPromedioDto {
   final String? name;
   final RatingPromedioBookDto? ratingPromedioBookDto;
 
-  factory BookAndRatingPromedioDto.fromJson(Map<String, dynamic> json) => BookAndRatingPromedioDto(
-        author: json["author"],
-        id: json["id"],
-        image: json["image"],
-        name: json["name"],
-        ratingPromedioBookDto: RatingPromedioBookDto.fromJson(json["ratingPromedioBookDto"]),
-      );
+  factory BookAndRatingPromedioDto.fromJson(Map<String, dynamic> json) => _$BookAndRatingPromedioDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "author": author,
-        "id": id,
-        "image": image,
-        "name": name,
-        "ratingPromedioBookDto": ratingPromedioBookDto?.toJson(),
-      };
+  Map<String, dynamic> toJson() => _$BookAndRatingPromedioDtoToJson(this);
+
+  @override
+  String toString() {
+    return 'BookAndRatingPromedioDto{author: $author, id: $id, image: $image, name: $name, ratingPromedioBookDto: $ratingPromedioBookDto}';
+  }
 }

@@ -22,7 +22,7 @@ class SCTextStyle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
+      (text.length > 18) ? '${text.substring(0, 18)}...' : text,
       textAlign: textAlign,
       style: TextStyle(
         fontSize: fontSize,
@@ -30,6 +30,8 @@ class SCTextStyle extends StatelessWidget {
         fontWeight: fontWeight,
         color: color,
       ),
+      softWrap: true,
+      maxLines: 2,
     );
   }
 }

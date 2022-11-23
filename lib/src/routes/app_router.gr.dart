@@ -14,10 +14,10 @@
 import 'package:auto_route/auto_route.dart' as _i9;
 import 'package:flutter/material.dart' as _i10;
 
-import '../view/pages/app/book/book_info_page.dart' as _i6;
 import '../view/pages/app/book/view_pdf_page.dart' as _i7;
 import '../view/pages/app/dashboard_page.dart' as _i4;
 import '../view/pages/app/home/home_page.dart' as _i5;
+import '../view/pages/app/library/library_page.dart' as _i6;
 import '../view/pages/app/user/user_page.dart' as _i8;
 import '../view/pages/auth/login_page.dart' as _i2;
 import '../view/pages/auth/register_page.dart' as _i3;
@@ -59,17 +59,17 @@ class AppRouter extends _i9.RootStackRouter {
         child: const _i5.HomePage(),
       );
     },
-    BookInfoRoute.name: (routeData) {
+    LibraryRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<BookInfoRouteArgs>(
-          orElse: () => BookInfoRouteArgs(
+      final args = routeData.argsAs<LibraryRouteArgs>(
+          orElse: () => LibraryRouteArgs(
                   bookId: pathParams.getInt(
                 'id',
                 0,
               )));
       return _i9.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i6.BookInfoPage(
+        child: _i6.LibraryPage(
           key: args.key,
           bookId: args.bookId,
         ),
@@ -124,19 +124,12 @@ class AppRouter extends _i9.RootStackRouter {
           path: '/dashboard-page',
           children: [
             _i9.RouteConfig(
-              '#redirect',
-              path: '',
-              parent: DashboardRoute.name,
-              redirectTo: 'home',
-              fullMatch: true,
-            ),
-            _i9.RouteConfig(
               HomeRoute.name,
               path: 'home',
               parent: DashboardRoute.name,
             ),
             _i9.RouteConfig(
-              BookInfoRoute.name,
+              LibraryRoute.name,
               path: 'home/:id',
               parent: DashboardRoute.name,
             ),
@@ -217,26 +210,26 @@ class HomeRoute extends _i9.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.BookInfoPage]
-class BookInfoRoute extends _i9.PageRouteInfo<BookInfoRouteArgs> {
-  BookInfoRoute({
+/// [_i6.LibraryPage]
+class LibraryRoute extends _i9.PageRouteInfo<LibraryRouteArgs> {
+  LibraryRoute({
     _i10.Key? key,
     int bookId = 0,
   }) : super(
-          BookInfoRoute.name,
+          LibraryRoute.name,
           path: 'home/:id',
-          args: BookInfoRouteArgs(
+          args: LibraryRouteArgs(
             key: key,
             bookId: bookId,
           ),
           rawPathParams: {'id': bookId},
         );
 
-  static const String name = 'BookInfoRoute';
+  static const String name = 'LibraryRoute';
 }
 
-class BookInfoRouteArgs {
-  const BookInfoRouteArgs({
+class LibraryRouteArgs {
+  const LibraryRouteArgs({
     this.key,
     this.bookId = 0,
   });
@@ -247,7 +240,7 @@ class BookInfoRouteArgs {
 
   @override
   String toString() {
-    return 'BookInfoRouteArgs{key: $key, bookId: $bookId}';
+    return 'LibraryRouteArgs{key: $key, bookId: $bookId}';
   }
 }
 

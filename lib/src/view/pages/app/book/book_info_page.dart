@@ -1,11 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:library_book_app/src/core/raw/raw_dto.dart';
 import 'package:library_book_app/src/shared/sc_colors.dart';
 import 'package:library_book_app/src/shared/sc_responsive.dart';
 import 'package:library_book_app/src/view/shared/widgets/blur/blur_art_image.dart';
 import 'package:library_book_app/src/view/shared/widgets/buttons/sc_button_ip.dart';
-import 'package:library_book_app/src/view/shared/widgets/carousel/cs_card_carousel.dart';
 import 'package:library_book_app/src/view/shared/widgets/containers/description_info_container.dart';
 import 'package:library_book_app/src/view/shared/widgets/containers/sc_rating_section.dart';
 import 'package:library_book_app/src/view/shared/widgets/containers/sc_starts_section.dart';
@@ -23,6 +21,7 @@ class BookInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('id 🙋🏽‍♂️🙋🏽‍♂️: $bookId');
     final responsive = SCResponsive.of(context);
     final spaceImageAndText = SCResponsive.of(context).widthPercentage(38);
 
@@ -192,14 +191,6 @@ class BookInfoPage extends StatelessWidget {
                   ),
                   SizedBox(
                     height: responsive.heightPercentage(2),
-                  ),
-                  SizedBox(
-                    height: responsive.heightPercentage(34),
-                    child: ScCardCarousel(
-                      width: responsive.widthPercentage(28),
-                      height: responsive.widthPercentage(43),
-                      books: RawDto.books(),
-                    ),
                   ),
                   SCTextStyle(
                     text: 'Would you like to rate this book?'.toUpperCase(),
