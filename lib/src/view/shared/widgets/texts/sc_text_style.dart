@@ -8,21 +8,23 @@ class SCTextStyle extends StatelessWidget {
   final Color color;
   final FontWeight fontWeight;
   final TextAlign textAlign;
+  final bool isTextLarge;
 
-  const SCTextStyle(
-      {Key? key,
-      required this.text,
-      this.fontFamily = 'Graphik',
-      required this.fontSize,
-      this.color = SCColors.accent,
-      this.fontWeight = FontWeight.w400,
-      this.textAlign = TextAlign.start})
-      : super(key: key);
+  const SCTextStyle({
+    Key? key,
+    required this.text,
+    this.fontFamily = 'Graphik',
+    required this.fontSize,
+    this.color = SCColors.accent,
+    this.fontWeight = FontWeight.w400,
+    this.textAlign = TextAlign.start,
+    this.isTextLarge = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
+      (isTextLarge) ? ((text.length > 18) ? '${text.substring(0, 18)}...' : text) : text,
       textAlign: textAlign,
       style: TextStyle(
         fontSize: fontSize,
@@ -30,6 +32,8 @@ class SCTextStyle extends StatelessWidget {
         fontWeight: fontWeight,
         color: color,
       ),
+      softWrap: true,
+      maxLines: 2,
     );
   }
 }
