@@ -1,13 +1,8 @@
-// To parse this JSON data, do
-//
-//     final jwtDto = jwtDtoFromJson(jsonString);
+import 'package:json_annotation/json_annotation.dart';
 
-import 'dart:convert';
+part 'jwt_dto.g.dart';
 
-JwtDto jwtDtoFromJson(String str) => JwtDto.fromJson(json.decode(str));
-
-String jwtDtoToJson(JwtDto data) => json.encode(data.toJson());
-
+@JsonSerializable()
 class JwtDto {
   JwtDto({
     this.token = '',
@@ -15,11 +10,7 @@ class JwtDto {
 
   final String token;
 
-  factory JwtDto.fromJson(Map<String, dynamic> json) => JwtDto(
-        token: json["token"],
-      );
+  factory JwtDto.fromJson(Map<String, dynamic> json) => _$JwtDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "token": token,
-      };
+  Map<String, dynamic> toJson() => _$JwtDtoToJson(this);
 }

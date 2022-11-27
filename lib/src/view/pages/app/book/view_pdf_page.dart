@@ -39,9 +39,7 @@ class _ViewPdfPageState extends State<ViewPdfPage> {
             return IconButton(
               icon: const Icon(Icons.arrow_back_ios_new),
               onPressed: () {
-                context.pushRoute(DashboardRoute(children: [
-                  LibraryRoute(bookId: 1),
-                ]));
+                context.pushRoute(const DashboardRoute());
               },
             );
           },

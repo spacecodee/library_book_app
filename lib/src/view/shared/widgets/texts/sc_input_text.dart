@@ -10,6 +10,7 @@ class SCInputText extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final TextInputType keyboardType;
   final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
   const SCInputText({
     Key? key,
@@ -21,6 +22,7 @@ class SCInputText extends StatelessWidget {
     this.padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
     this.keyboardType = TextInputType.text,
     this.controller,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -36,6 +38,7 @@ class SCInputText extends StatelessWidget {
       ),
       child: TextFormField(
         controller: controller,
+        validator: validator,
         keyboardType: keyboardType,
         obscureText: isPassword,
         style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:library_book_app/src/core/dto/book/show_book_dto.dart';
 import 'package:library_book_app/src/core/dto/category/book/category_book_and_book_dto.dart';
 import 'package:logger/logger.dart';
 
@@ -23,5 +24,13 @@ class CategoryBookService {
     }
 
     return listData;
+  }
+
+  Future<ShowBookDto> getByBookIdAndClientId(int bookId, int clientId) async {
+    final response = await _dio.get(
+      '$_authRouter/find-by/$bookId?clientId=$clientId',
+    );
+
+    return ShowBookDto.fromJson(response.data['data']);
   }
 }

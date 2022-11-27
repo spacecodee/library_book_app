@@ -144,7 +144,7 @@ class ScRegisterForm extends ConsumerWidget {
                 username: usernameController.text.trim(),
               );
 
-              print(clientVo.toJson());
+              //print(clientVo.toJson());
               print('save');
             },
             text: 'Start Reading',

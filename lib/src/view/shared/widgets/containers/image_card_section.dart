@@ -45,6 +45,7 @@ class ImageCarSection extends StatelessWidget {
             text: title,
             fontSize: fontSize,
             color: SCColors.accent.withOpacity(0.5),
+            isTextLarge: true,
           ),
           SizedBox(
             height: space / 2,

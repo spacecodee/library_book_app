@@ -1,13 +1,8 @@
-// To parse this JSON data, do
-//
-//     final showBookDto = showBookDtoFromJson(jsonString);
+import 'package:json_annotation/json_annotation.dart';
 
-import 'dart:convert';
+part 'show_book_dto.g.dart';
 
-ShowBookDto showBookDtoFromJson(String str) => ShowBookDto.fromJson(json.decode(str));
-
-String showBookDtoToJson(ShowBookDto data) => json.encode(data.toJson());
-
+@JsonSerializable()
 class ShowBookDto {
   ShowBookDto({
     required this.author,
@@ -33,29 +28,7 @@ class ShowBookDto {
   final String pdf;
   final int rating;
 
-  factory ShowBookDto.fromJson(Map<String, dynamic> json) => ShowBookDto(
-        author: json["author"],
-        categoryName: json["categoryName"],
-        description: json["description"],
-        globalRating: json["globalRating"],
-        id: json["id"],
-        image: json["image"],
-        name: json["name"],
-        pages: json["pages"],
-        pdf: json["pdf"],
-        rating: json["rating"],
-      );
+  factory ShowBookDto.fromJson(Map<String, dynamic> json) => _$ShowBookDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "author": author,
-        "categoryName": categoryName,
-        "description": description,
-        "globalRating": globalRating,
-        "id": id,
-        "image": image,
-        "name": name,
-        "pages": pages,
-        "pdf": pdf,
-        "rating": rating,
-      };
+  Map<String, dynamic> toJson() => _$ShowBookDtoToJson(this);
 }
