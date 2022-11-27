@@ -1,13 +1,8 @@
-// To parse this JSON data, do
-//
-//     final authUserPojo = authUserPojoFromJson(jsonString);
+import 'package:json_annotation/json_annotation.dart';
 
-import 'dart:convert';
+part 'auth_user_pojo.g.dart';
 
-AuthUserPojo authUserPojoFromJson(String str) => AuthUserPojo.fromJson(json.decode(str));
-
-String authUserPojoToJson(AuthUserPojo data) => json.encode(data.toJson());
-
+@JsonSerializable()
 class AuthUserPojo {
   AuthUserPojo({
     required this.password,
@@ -17,13 +12,7 @@ class AuthUserPojo {
   final String password;
   final String username;
 
-  factory AuthUserPojo.fromJson(Map<String, dynamic> json) => AuthUserPojo(
-        password: json["password"],
-        username: json["username"],
-      );
+  factory AuthUserPojo.fromJson(Map<String, dynamic> json) => _$AuthUserPojoFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "password": password,
-        "username": username,
-      };
+  Map<String, dynamic> toJson() => _$AuthUserPojoToJson(this);
 }

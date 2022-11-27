@@ -12,12 +12,12 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i9;
+import 'package:auto_route/empty_router_widgets.dart' as _i4;
 import 'package:flutter/material.dart' as _i10;
 
-import '../view/pages/app/book/view_pdf_page.dart' as _i7;
-import '../view/pages/app/dashboard_page.dart' as _i4;
-import '../view/pages/app/home/home_page.dart' as _i5;
-import '../view/pages/app/library/library_page.dart' as _i6;
+import '../view/pages/app/book/book_info_page.dart' as _i6;
+import '../view/pages/app/dashboard_page.dart' as _i5;
+import '../view/pages/app/home/home_page.dart' as _i7;
 import '../view/pages/app/user/user_page.dart' as _i8;
 import '../view/pages/auth/login_page.dart' as _i2;
 import '../view/pages/auth/register_page.dart' as _i3;
@@ -47,42 +47,38 @@ class AppRouter extends _i9.RootStackRouter {
         child: const _i3.RegisterPage(),
       );
     },
+    EmptyRouterRoute.name: (routeData) {
+      return _i9.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i4.EmptyRouterPage(),
+      );
+    },
     DashboardRoute.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i4.DashboardPage(),
+        child: const _i5.DashboardPage(),
       );
     },
-    HomeRoute.name: (routeData) {
-      return _i9.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i5.HomePage(),
-      );
-    },
-    LibraryRoute.name: (routeData) {
+    BookInfoRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<LibraryRouteArgs>(
-          orElse: () => LibraryRouteArgs(
+      final args = routeData.argsAs<BookInfoRouteArgs>(
+          orElse: () => BookInfoRouteArgs(
                   bookId: pathParams.getInt(
-                'id',
+                'bookId',
                 0,
               )));
       return _i9.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i6.LibraryPage(
+        child: _i6.BookInfoPage(
           key: args.key,
           bookId: args.bookId,
         ),
       );
     },
-    ViewPdfRoute.name: (routeData) {
-      final args = routeData.argsAs<ViewPdfRouteArgs>();
+    HomeRoute.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i7.ViewPdfPage(
-          key: args.key,
-          title: args.title,
-        ),
+        child: const _i7.HomePage(),
       );
     },
     UserRoute.name: (routeData) {
@@ -120,28 +116,30 @@ class AppRouter extends _i9.RootStackRouter {
           path: '/register',
         ),
         _i9.RouteConfig(
-          DashboardRoute.name,
-          path: '/dashboard-page',
+          EmptyRouterRoute.name,
+          path: '/books',
           children: [
             _i9.RouteConfig(
-              HomeRoute.name,
-              path: 'home',
-              parent: DashboardRoute.name,
+              DashboardRoute.name,
+              path: '',
+              parent: EmptyRouterRoute.name,
+              children: [
+                _i9.RouteConfig(
+                  HomeRoute.name,
+                  path: '',
+                  parent: DashboardRoute.name,
+                ),
+                _i9.RouteConfig(
+                  UserRoute.name,
+                  path: 'user',
+                  parent: DashboardRoute.name,
+                ),
+              ],
             ),
             _i9.RouteConfig(
-              LibraryRoute.name,
-              path: 'home/:id',
-              parent: DashboardRoute.name,
-            ),
-            _i9.RouteConfig(
-              ViewPdfRoute.name,
-              path: 'home/:id/:pdf',
-              parent: DashboardRoute.name,
-            ),
-            _i9.RouteConfig(
-              UserRoute.name,
-              path: 'user',
-              parent: DashboardRoute.name,
+              BookInfoRoute.name,
+              path: ':bookId',
+              parent: EmptyRouterRoute.name,
             ),
           ],
         ),
@@ -185,12 +183,25 @@ class RegisterRoute extends _i9.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.DashboardPage]
+/// [_i4.EmptyRouterPage]
+class EmptyRouterRoute extends _i9.PageRouteInfo<void> {
+  const EmptyRouterRoute({List<_i9.PageRouteInfo>? children})
+      : super(
+          EmptyRouterRoute.name,
+          path: '/books',
+          initialChildren: children,
+        );
+
+  static const String name = 'EmptyRouterRoute';
+}
+
+/// generated route for
+/// [_i5.DashboardPage]
 class DashboardRoute extends _i9.PageRouteInfo<void> {
   const DashboardRoute({List<_i9.PageRouteInfo>? children})
       : super(
           DashboardRoute.name,
-          path: '/dashboard-page',
+          path: '',
           initialChildren: children,
         );
 
@@ -198,38 +209,26 @@ class DashboardRoute extends _i9.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.HomePage]
-class HomeRoute extends _i9.PageRouteInfo<void> {
-  const HomeRoute()
-      : super(
-          HomeRoute.name,
-          path: 'home',
-        );
-
-  static const String name = 'HomeRoute';
-}
-
-/// generated route for
-/// [_i6.LibraryPage]
-class LibraryRoute extends _i9.PageRouteInfo<LibraryRouteArgs> {
-  LibraryRoute({
+/// [_i6.BookInfoPage]
+class BookInfoRoute extends _i9.PageRouteInfo<BookInfoRouteArgs> {
+  BookInfoRoute({
     _i10.Key? key,
     int bookId = 0,
   }) : super(
-          LibraryRoute.name,
-          path: 'home/:id',
-          args: LibraryRouteArgs(
+          BookInfoRoute.name,
+          path: ':bookId',
+          args: BookInfoRouteArgs(
             key: key,
             bookId: bookId,
           ),
-          rawPathParams: {'id': bookId},
+          rawPathParams: {'bookId': bookId},
         );
 
-  static const String name = 'LibraryRoute';
+  static const String name = 'BookInfoRoute';
 }
 
-class LibraryRouteArgs {
-  const LibraryRouteArgs({
+class BookInfoRouteArgs {
+  const BookInfoRouteArgs({
     this.key,
     this.bookId = 0,
   });
@@ -240,42 +239,20 @@ class LibraryRouteArgs {
 
   @override
   String toString() {
-    return 'LibraryRouteArgs{key: $key, bookId: $bookId}';
+    return 'BookInfoRouteArgs{key: $key, bookId: $bookId}';
   }
 }
 
 /// generated route for
-/// [_i7.ViewPdfPage]
-class ViewPdfRoute extends _i9.PageRouteInfo<ViewPdfRouteArgs> {
-  ViewPdfRoute({
-    _i10.Key? key,
-    required String title,
-  }) : super(
-          ViewPdfRoute.name,
-          path: 'home/:id/:pdf',
-          args: ViewPdfRouteArgs(
-            key: key,
-            title: title,
-          ),
+/// [_i7.HomePage]
+class HomeRoute extends _i9.PageRouteInfo<void> {
+  const HomeRoute()
+      : super(
+          HomeRoute.name,
+          path: '',
         );
 
-  static const String name = 'ViewPdfRoute';
-}
-
-class ViewPdfRouteArgs {
-  const ViewPdfRouteArgs({
-    this.key,
-    required this.title,
-  });
-
-  final _i10.Key? key;
-
-  final String title;
-
-  @override
-  String toString() {
-    return 'ViewPdfRouteArgs{key: $key, title: $title}';
-  }
+  static const String name = 'HomeRoute';
 }
 
 /// generated route for

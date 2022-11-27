@@ -1,33 +1,20 @@
-// To parse this JSON data, do
-//
-//     final httpResponseApiDto = httpResponseApiDtoFromJson(jsonString);
+import 'package:json_annotation/json_annotation.dart';
 
-import 'dart:convert';
+part 'http_response_api_dto.g.dart';
 
-HttpResponseApiDto httpResponseApiDtoFromJson(String str) => HttpResponseApiDto.fromJson(json.decode(str));
-
-String httpResponseApiDtoToJson(HttpResponseApiDto data) => json.encode(data.toJson());
-
+@JsonSerializable()
 class HttpResponseApiDto {
   HttpResponseApiDto({
-    this.message = '',
-    this.status = '',
-    this.statusCode = 0,
+    required this.statusCode,
+    required this.message,
+    required this.data,
   });
 
-  final String message;
-  final String status;
   final int statusCode;
+  final String message;
+  final dynamic data;
 
-  factory HttpResponseApiDto.fromJson(Map<String, dynamic> json) => HttpResponseApiDto(
-        message: json["message"],
-        status: json["status"],
-        statusCode: json["statusCode"],
-      );
+  factory HttpResponseApiDto.fromJson(Map<String, dynamic> json) => _$HttpResponseApiDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "message": message,
-        "status": status,
-        "statusCode": statusCode,
-      };
+  Map<String, dynamic> toJson() => _$HttpResponseApiDtoToJson(this);
 }

@@ -1,13 +1,8 @@
-// To parse this JSON data, do
-//
-//     final peopleDto = peopleDtoFromJson(jsonString);
+import 'package:json_annotation/json_annotation.dart';
 
-import 'dart:convert';
+part 'people_dto.g.dart';
 
-PeopleDto peopleDtoFromJson(String str) => PeopleDto.fromJson(json.decode(str));
-
-String peopleDtoToJson(PeopleDto data) => json.encode(data.toJson());
-
+@JsonSerializable()
 class PeopleDto {
   PeopleDto({
     this.address = '',
@@ -23,19 +18,7 @@ class PeopleDto {
   final int phone;
   final String surname;
 
-  factory PeopleDto.fromJson(Map<String, dynamic> json) => PeopleDto(
-        address: json["address"],
-        id: json["id"],
-        name: json["name"],
-        phone: json["phone"],
-        surname: json["surname"],
-      );
+  factory PeopleDto.fromJson(Map<String, dynamic> json) => _$PeopleDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "address": address,
-        "id": id,
-        "name": name,
-        "phone": phone,
-        "surname": surname,
-      };
+  Map<String, dynamic> toJson() => _$PeopleDtoToJson(this);
 }

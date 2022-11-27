@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
 
           return Padding(
             padding: EdgeInsets.only(
-              top: responsive.widthPercentage(4.5),
+              top: responsive.widthPercentage(1),
               bottom: responsive.widthPercentage(3),
               left: responsive.widthPercentage(4),
               right: responsive.widthPercentage(4),

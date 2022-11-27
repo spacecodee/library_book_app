@@ -29,9 +29,7 @@ class ScCardCarousel extends StatelessWidget {
         return InkWell(
           onTap: () {
             final int idToSend = books[index].id ?? 0;
-            context.pushRoute(DashboardRoute(children: [
-              LibraryRoute(bookId: idToSend),
-            ]));
+            context.pushRoute(BookInfoRoute(bookId: idToSend));
           },
           child: ImageCarSection(
             padding: EdgeInsets.only(

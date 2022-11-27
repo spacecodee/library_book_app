@@ -1,15 +1,9 @@
-// To parse this JSON data, do
-//
-//     final userClientVo = userClientVoFromJson(jsonString);
-
-import 'dart:convert';
-
+import 'package:json_annotation/json_annotation.dart';
 import 'package:library_book_app/src/core/dto/people/people_dto.dart';
 
-UserClientVo userClientVoFromJson(String str) => UserClientVo.fromJson(json.decode(str));
+part 'user_client_vo.g.dart';
 
-String userClientVoToJson(UserClientVo data) => json.encode(data.toJson());
-
+@JsonSerializable()
 class UserClientVo {
   UserClientVo({
     required this.email,
@@ -25,19 +19,7 @@ class UserClientVo {
   final PeopleDto peopleDto;
   final String username;
 
-  factory UserClientVo.fromJson(Map<String, dynamic> json) => UserClientVo(
-        email: json["email"],
-        id: json["id"],
-        password: json["password"],
-        peopleDto: PeopleDto.fromJson(json["peopleDto"]),
-        username: json["username"],
-      );
+  factory UserClientVo.fromJson(Map<String, dynamic> json) => _$UserClientVoFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "email": email,
-        "id": id,
-        "password": password,
-        "peopleDto": peopleDto.toJson(),
-        "username": username,
-      };
+  Map<String, dynamic> toJson() => _$UserClientVoToJson(this);
 }
