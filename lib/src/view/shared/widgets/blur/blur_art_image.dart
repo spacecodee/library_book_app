@@ -48,7 +48,7 @@ class BlurArtImage extends StatelessWidget {
         ),
         Positioned(
           left: myResponsive.widthPercentage(5),
-          top: myResponsive.heightPercentage(5),
+          top: myResponsive.heightPercentage(2),
           child: InkWell(
             onTap: onTap,
             child: Icon(

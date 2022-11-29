@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:library_book_app/src/view/pages/app/book/book_info_page.dart';
+import 'package:library_book_app/src/view/pages/app/book/view_pdf_page.dart';
 import 'package:library_book_app/src/view/pages/app/dashboard_page.dart';
 import 'package:library_book_app/src/view/pages/app/home/home_page.dart';
 import 'package:library_book_app/src/view/pages/app/user/user_page.dart';
@@ -20,6 +21,7 @@ import 'package:library_book_app/src/view/pages/home/init_app.dart';
         AutoRoute(path: 'user', page: UserPage),
       ]),
       AutoRoute(path: ':bookId', page: BookInfoPage),
+      AutoRoute(path: ':pdf', page: ViewPdfPage),
     ]),
   ],
   replaceInRouteName: 'Page,Route',

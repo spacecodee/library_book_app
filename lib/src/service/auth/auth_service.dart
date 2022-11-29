@@ -36,4 +36,14 @@ class AuthService {
 
     return JwtDto.fromJson(response.data['data']);
   }
+
+  Future<JwtDto> refreshToken(String token) async {
+    final jwtDto = JwtDto(token: token);
+    final response = await _dio.post(
+      '$authRouter/refresh-token',
+      data: jwtDto.toJson(),
+    );
+
+    return JwtDto.fromJson(response.data['data']);
+  }
 }
