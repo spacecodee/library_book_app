@@ -119,22 +119,18 @@ class _UserPageState extends State<UserPage> {
                 ),
               );
             } else {
-              return _loadLoader(responsive.width, responsive.height);
+              return Container(
+                color: SCColors.freeColor,
+                width: responsive.width,
+                height: responsive.height,
+                child: const Center(
+                  child: CircularProgressIndicator(
+                    color: SCColors.accent,
+                  ),
+                ),
+              );
             }
           },
-        ),
-      ),
-    );
-  }
-
-  Widget _loadLoader(double width, double height) {
-    return Container(
-      color: SCColors.freeColor,
-      width: width,
-      height: height,
-      child: const Center(
-        child: CircularProgressIndicator(
-          color: SCColors.accent,
         ),
       ),
     );

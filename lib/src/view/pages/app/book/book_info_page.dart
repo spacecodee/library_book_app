@@ -35,6 +35,7 @@ class _BookInfoPageState extends State<BookInfoPage> {
 
     return SafeArea(
       child: Scaffold(
+        backgroundColor: SCColors.freeColor,
         body: SingleChildScrollView(
           child: FutureBuilder<ShowBookDto>(
             future: bookService.findByBookIdAndClientUsername(widget.bookId),
@@ -244,7 +245,12 @@ class _BookInfoPageState extends State<BookInfoPage> {
                   ),
                 );
               } else {
-                return const Center(child: CircularProgressIndicator());
+                return Container(
+                  color: SCColors.freeColor,
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
               }
             },
           ),

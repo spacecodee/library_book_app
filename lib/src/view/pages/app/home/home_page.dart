@@ -4,7 +4,6 @@ import 'package:library_book_app/src/service/category/book/category_book_service
 import 'package:library_book_app/src/shared/sc_colors.dart';
 import 'package:library_book_app/src/shared/sc_responsive.dart';
 import 'package:library_book_app/src/view/shared/widgets/carousel/cs_card_carousel.dart';
-import 'package:library_book_app/src/view/shared/widgets/texts/sc_search_input.dart';
 import 'package:library_book_app/src/view/shared/widgets/texts/sc_text_style.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,9 +18,12 @@ class HomePage extends StatelessWidget {
       future: categoryBookService.list(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return const Center(
-            child: CircularProgressIndicator(
-              color: SCColors.primary,
+          return Container(
+            color: SCColors.secondary,
+            child: const Center(
+              child: CircularProgressIndicator(
+                color: SCColors.primary,
+              ),
             ),
           );
         } else {
@@ -34,51 +36,32 @@ class HomePage extends StatelessWidget {
               left: responsive.widthPercentage(4),
               right: responsive.widthPercentage(4),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ScSearchInput(
-                  width: responsive.widthPercentage(80),
-                  height: responsive.heightPercentage(5.4),
-                  hintText: "Search your favorite book",
-                  fontSize: responsive.widthPercentage(3),
-                  hintTextSize: responsive.widthPercentage(4),
-                ),
-                SizedBox(
-                  height: responsive.heightPercentage(2),
-                ),
-                SizedBox(
-                  width: responsive.width,
-                  height: responsive.heightPercentage(72),
-                  child: ListView.builder(
-                    itemCount: data.length,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SCTextStyle(
-                            text: data[index].name!.toUpperCase(),
-                            fontWeight: FontWeight.w600,
-                            color: SCColors.accent,
-                            fontSize: responsive.widthPercentage(3.5),
-                          ),
-                          SizedBox(
-                            height: responsive.widthPercentage(4.5),
-                          ),
-                          SizedBox(
-                            height: responsive.heightPercentage(32),
-                            child: ScCardCarousel(
-                              width: responsive.widthPercentage(28),
-                              height: responsive.widthPercentage(43),
-                              books: data[index].bookDto!,
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                ),
-              ],
+            child: ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SCTextStyle(
+                      text: data[index].name!.toUpperCase(),
+                      fontWeight: FontWeight.w600,
+                      color: SCColors.accent,
+                      fontSize: responsive.widthPercentage(3.5),
+                    ),
+                    SizedBox(
+                      height: responsive.widthPercentage(4.5),
+                    ),
+                    SizedBox(
+                      height: responsive.heightPercentage(38),
+                      child: ScCardCarousel(
+                        width: responsive.widthPercentage(28),
+                        height: responsive.widthPercentage(43),
+                        books: data[index].bookDto!,
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           );
         }
