@@ -53,7 +53,7 @@ class _BookInfoPageState extends State<BookInfoPage> {
       title: 'Rating Book',
       desc: 'Rating successfully added or updated',
     );
-    AuthenticationClient().isSomeone('student').then((value) {
+    AuthenticationClient().isSomeone('ROLE_STUDENT').then((value) {
       isClient = value;
     });
 
@@ -250,31 +250,33 @@ class _BookInfoPageState extends State<BookInfoPage> {
                               height: responsive.heightPercentage(2),
                             ),
                             AbsorbPointer(
-                              absorbing: isClient,
+                              absorbing: !isClient,
                               child: ScButtonIp(
                                 padding: EdgeInsets.symmetric(
                                   horizontal: responsive.diagonalPercentage(3),
                                   vertical: responsive.diagonalPercentage(1.4),
                                 ),
                                 haveBorder: true,
-                                borderColor: !isClient ? SCColors.primary : SCColors.secondary,
+                                borderColor: isClient ? SCColors.primary : SCColors.secondary,
                                 fontFamily: 'Lora',
                                 text: "Leave a rating",
                                 fontSize: responsive.widthPercentage(4),
                                 onTap: () {
-                                  final ratingBook = RatingBookDto(
-                                    bookId: widget.bookId,
-                                    ratingBook: ratingToBook,
-                                    username: username,
-                                  );
+                                  if (ratingToBook > 0) {
+                                    final ratingBook = RatingBookDto(
+                                      bookId: widget.bookId,
+                                      ratingBook: ratingToBook,
+                                      username: username,
+                                    );
 
-                                  ratingBookService.leaveRating(ratingBook).then((value) {
-                                    if (value) {
-                                      dialog.show();
-                                    } else {
-                                      dialog.show();
-                                    }
-                                  });
+                                    ratingBookService.leaveRating(ratingBook).then((value) {
+                                      if (value) {
+                                        dialog.show();
+                                      } else {
+                                        dialog.show();
+                                      }
+                                    });
+                                  }
                                 },
                               ),
                             ),
