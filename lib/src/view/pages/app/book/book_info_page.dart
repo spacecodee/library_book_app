@@ -1,8 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:library_book_app/src/core/dto/book/show_book_dto.dart';
+import 'package:library_book_app/src/core/dto/rating/book/rating_book_dto.dart';
 import 'package:library_book_app/src/routes/app_router.gr.dart';
 import 'package:library_book_app/src/service/book/book_service.dart';
+import 'package:library_book_app/src/service/rating/book/rating_book_service.dart';
+import 'package:library_book_app/src/service/token/authentication_service.dart';
 import 'package:library_book_app/src/shared/sc_colors.dart';
 import 'package:library_book_app/src/shared/sc_responsive.dart';
 import 'package:library_book_app/src/view/shared/widgets/blur/blur_art_image.dart';
@@ -32,6 +36,30 @@ class _BookInfoPageState extends State<BookInfoPage> {
     final bookService = BookService();
     final responsive = SCResponsive.of(context);
     final spaceImageAndText = SCResponsive.of(context).widthPercentage(38);
+    bool isClient = true;
+    String username = '';
+    double ratingToBook = 0;
+    final ratingBookService = RatingBookService();
+    final dialog = AwesomeDialog(
+      context: context,
+      dialogType: DialogType.info,
+      autoHide: const Duration(seconds: 2),
+      customHeader: const Icon(
+        Icons.info_outline,
+        color: SCColors.accent,
+      ),
+      dialogBackgroundColor: SCColors.primary,
+      animType: AnimType.rightSlide,
+      title: 'Rating Book',
+      desc: 'Rating successfully added or updated',
+    );
+    AuthenticationClient().isSomeone('student').then((value) {
+      isClient = value;
+    });
+
+    AuthenticationClient().getUserName().then((value) {
+      username = value;
+    });
 
     return SafeArea(
       child: Scaffold(
@@ -53,7 +81,7 @@ class _BookInfoPageState extends State<BookInfoPage> {
                         height: responsive.heightPercentage(25),
                         colorFilter: SCColors.secondary.withOpacity(0.5),
                         onTap: () {
-                          context.popRoute();
+                          context.router.popAndPush(const DashboardRoute());
                         },
                       ),
                       Positioned(
@@ -215,25 +243,40 @@ class _BookInfoPageState extends State<BookInfoPage> {
                               initialRating: snapshot.data!.rating,
                               unratedColor: SCColors.accent.withOpacity(0.2),
                               onRatingUpdate: (rating) {
-                                print(rating);
+                                ratingToBook = rating;
                               },
                             ),
                             SizedBox(
                               height: responsive.heightPercentage(2),
                             ),
-                            ScButtonIp(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: responsive.diagonalPercentage(3),
-                                vertical: responsive.diagonalPercentage(1.4),
+                            AbsorbPointer(
+                              absorbing: isClient,
+                              child: ScButtonIp(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: responsive.diagonalPercentage(3),
+                                  vertical: responsive.diagonalPercentage(1.4),
+                                ),
+                                haveBorder: true,
+                                borderColor: !isClient ? SCColors.primary : SCColors.secondary,
+                                fontFamily: 'Lora',
+                                text: "Leave a rating",
+                                fontSize: responsive.widthPercentage(4),
+                                onTap: () {
+                                  final ratingBook = RatingBookDto(
+                                    bookId: widget.bookId,
+                                    ratingBook: ratingToBook,
+                                    username: username,
+                                  );
+
+                                  ratingBookService.leaveRating(ratingBook).then((value) {
+                                    if (value) {
+                                      dialog.show();
+                                    } else {
+                                      dialog.show();
+                                    }
+                                  });
+                                },
                               ),
-                              haveBorder: true,
-                              borderColor: SCColors.primary,
-                              fontFamily: 'Lora',
-                              text: "Leave a rating",
-                              fontSize: responsive.widthPercentage(4),
-                              onTap: () {
-                                print("Leave a rating");
-                              },
                             ),
                             SizedBox(
                               height: responsive.heightPercentage(4),

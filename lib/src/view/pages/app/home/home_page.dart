@@ -6,15 +6,20 @@ import 'package:library_book_app/src/shared/sc_responsive.dart';
 import 'package:library_book_app/src/view/shared/widgets/carousel/cs_card_carousel.dart';
 import 'package:library_book_app/src/view/shared/widgets/texts/sc_text_style.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final responsive = SCResponsive.of(context);
     final categoryBookService = CategoryBookService();
 
-    return FutureBuilder(
+    return FutureBuilder<List<CategoryBookAndBookDto>>(
       future: categoryBookService.list(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
