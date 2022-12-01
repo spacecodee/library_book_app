@@ -23,7 +23,7 @@ class ImageArtWork extends StatelessWidget {
           image: NetworkImage(urlImage),
           fit: BoxFit.cover,
         ),
-        borderRadius: BorderRadius.circular(2),
+        borderRadius: BorderRadius.circular(10),
       ),
     );
   }

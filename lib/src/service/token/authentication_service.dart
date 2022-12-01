@@ -9,20 +9,20 @@ class AuthenticationClient {
   final _flutterSecureStorage = const FlutterSecureStorage();
 
   Future<String> get accessToken async {
-    await logOut();
     final data = await _flutterSecureStorage.read(key: 'SESSION');
-    if (data != null) {
-      final session = JwtDto.fromJson(jsonDecode(data));
-      return session.token;
+
+    if (data == null) {
+      return '';
     }
 
-    return '';
+    final session = JwtDto.fromJson(jsonDecode(data));
+    return session.token;
   }
 
   Future<String> getUserName() async {
     final isLogged = await isLoggedIn();
 
-    if (isLogged) {
+    if (!isLogged) {
       return '';
     }
 
@@ -36,6 +36,7 @@ class AuthenticationClient {
   }
 
   Future<void> saveSession(JwtDto dto) async {
+    await logOut();
     final data = jsonEncode(dto.toJson());
 
     await _flutterSecureStorage.write(key: 'SESSION', value: data);
@@ -64,16 +65,19 @@ class AuthenticationClient {
     return JsonPayLoadDto.fromJson(decodedToken);
   }
 
-  Future<void> logOut() {
-    return _flutterSecureStorage.delete(key: 'SESSION');
+  Future<void> logOut() async {
+    final token = await accessToken;
+    if (token.isNotEmpty) {
+      return _flutterSecureStorage.delete(key: 'SESSION');
+    }
   }
 
   Future<bool> isTokenExpired(String token) async {
-    return JwtDecoder.isExpired(token);
+    return token.isNotEmpty ? JwtDecoder.isExpired(token) : true;
   }
 
   Future<bool> isLoggedIn() async {
     final value = await accessToken;
-    return value.isNotEmpty;
+    return value.isNotEmpty ? true : false;
   }
 }

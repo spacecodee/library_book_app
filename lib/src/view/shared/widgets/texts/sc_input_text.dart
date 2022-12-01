@@ -7,6 +7,7 @@ class SCInputText extends StatelessWidget {
   final double hintTextSize;
   final String hintText;
   final bool isPassword;
+  final bool enabled;
   final EdgeInsetsGeometry padding;
   final TextInputType keyboardType;
   final TextEditingController? controller;
@@ -16,8 +17,9 @@ class SCInputText extends StatelessWidget {
     Key? key,
     this.textColor = SCColors.accent,
     required this.fontSize,
-    required this.hintText,
+    this.hintText = '',
     this.isPassword = false,
+    this.enabled = true,
     required this.hintTextSize,
     this.padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
     this.keyboardType = TextInputType.text,
@@ -41,6 +43,7 @@ class SCInputText extends StatelessWidget {
         validator: validator,
         keyboardType: keyboardType,
         obscureText: isPassword,
+        enabled: enabled,
         style: TextStyle(
           fontSize: fontSize,
           color: textColor,

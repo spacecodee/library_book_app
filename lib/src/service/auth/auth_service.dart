@@ -11,29 +11,55 @@ class AuthService {
   final _logger = Logger();
   final authRouter = '${dotenv.env['API_URL_V1']}/auth';
 
-  Future<String> register(UserClientVo vo) async {
-    final response = await _dio.post(
-      authRouter,
-    );
+  Future<bool> register(UserClientVo vo) async {
+    try {
+      final response = await _dio.post(
+        '$authRouter/register-client',
+        data: vo.toJson(),
+      );
 
-    final HttpResponseApiDto data = response.data!;
-
-    if (response.data != null) {
+      print('response: ${response.data}');
+      final HttpResponseApiDto data = HttpResponseApiDto.fromJson(response.data);
       if (data.statusCode == 200) {
-        return data.message;
+        return true;
       }
+    } catch (e) {
+      _logger.e(e);
+
+      return false;
     }
 
-    _logger.i(data.message, data.statusCode);
-    return data.message;
+    return false;
   }
 
   Future<JwtDto> login(AuthUserPojo authUserPojo) async {
-    final response = await _dio.post(
-      '$authRouter/login',
-      data: authUserPojo.toJson(),
-    );
+    try {
+      final response = await _dio.post(
+        '$authRouter/login',
+        data: authUserPojo.toJson(),
+      );
 
-    return JwtDto.fromJson(response.data['data']);
+      return JwtDto.fromJson(response.data['data']);
+    } catch (e) {
+      _logger.e(e);
+    }
+
+    return JwtDto();
+  }
+
+  Future<JwtDto> refreshToken(String token) async {
+    try {
+      final jwtDto = JwtDto(token: token);
+
+      final response = await _dio.post(
+        '$authRouter/refresh-token',
+        data: jwtDto.toJson(),
+      );
+      return JwtDto.fromJson(response.data['data']);
+    } catch (e) {
+      _logger.e(e);
+    }
+
+    return JwtDto();
   }
 }

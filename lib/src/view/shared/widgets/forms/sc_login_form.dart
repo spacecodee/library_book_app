@@ -1,11 +1,13 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:library_book_app/src/core/dto/jwt/jwt_dto.dart';
 import 'package:library_book_app/src/core/pojo/auth_user_pojo.dart';
-import 'package:library_book_app/src/service/token/authentication_service.dart';
 import 'package:library_book_app/src/routes/app_router.gr.dart';
 import 'package:library_book_app/src/service/auth/auth_service.dart';
+import 'package:library_book_app/src/service/token/authentication_service.dart';
 import 'package:library_book_app/src/shared/progress_dialog.dart';
+import 'package:library_book_app/src/shared/sc_colors.dart';
 import 'package:library_book_app/src/shared/sc_responsive.dart';
 import 'package:library_book_app/src/view/shared/widgets/buttons/sc_button_flat.dart';
 import 'package:library_book_app/src/view/shared/widgets/buttons/sc_button_ip.dart';
@@ -97,6 +99,21 @@ class _ScLoginFormState extends State<ScLoginForm> {
                       ]),
                       predicate: (route) => false,
                     );
+                  } else {
+                    ProgressDialog.dismiss(context);
+                    AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.error,
+                      autoHide: const Duration(seconds: 2),
+                      customHeader: const Icon(
+                        Icons.error_outline,
+                        color: SCColors.accent,
+                      ),
+                      dialogBackgroundColor: SCColors.error,
+                      animType: AnimType.rightSlide,
+                      title: 'Login Error',
+                      desc: 'Username or password is incorrect',
+                    ).show();
                   }
                 });
               }

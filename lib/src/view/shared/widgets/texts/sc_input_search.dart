@@ -12,7 +12,8 @@ class ScInputSearch extends StatelessWidget {
   final TextInputType keyboardType;
   final double width;
   final double height;
-  final Function()? onTap;
+  final void Function(String)? onChanged;
+  final void Function(String?)? onSaved;
 
   const ScInputSearch({
     Key? key,
@@ -26,7 +27,8 @@ class ScInputSearch extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     required this.width,
     this.height = 45,
-    this.onTap,
+    this.onChanged,
+    this.onSaved,
   }) : super(key: key);
 
   @override
@@ -49,6 +51,8 @@ class ScInputSearch extends StatelessWidget {
           SizedBox(
             width: width - 60,
             child: TextFormField(
+              onChanged: onChanged,
+              onSaved: onSaved,
               keyboardType: keyboardType,
               obscureText: isPassword,
               style: TextStyle(
@@ -64,11 +68,6 @@ class ScInputSearch extends StatelessWidget {
                 border: InputBorder.none,
               ),
             ),
-          ),
-          const SizedBox(width: 10),
-          InkWell(
-            onTap: onTap,
-            child: Icon(Icons.filter_list_outlined, color: hintTextColor),
           ),
         ],
       ),

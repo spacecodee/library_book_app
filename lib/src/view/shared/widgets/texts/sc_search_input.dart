@@ -7,9 +7,10 @@ class ScSearchInput extends StatelessWidget {
   final double width;
   final double height;
   final String hintText;
-  final Function()? onTap;
   final double fontSize;
   final double hintTextSize;
+  final void Function(String)? onChanged;
+  final void Function(String?)? onSaved;
 
   const ScSearchInput({
     Key? key,
@@ -18,8 +19,9 @@ class ScSearchInput extends StatelessWidget {
     required this.hintText,
     required this.fontSize,
     required this.hintTextSize,
-    this.onTap,
     this.padding,
+    this.onChanged,
+    this.onSaved,
   }) : super(key: key);
 
   @override
@@ -28,7 +30,8 @@ class ScSearchInput extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ScInputSearch(
-          onTap: onTap,
+          onSaved: onSaved,
+          onChanged: onChanged,
           width: width,
           height: height,
           fontSize: fontSize,
