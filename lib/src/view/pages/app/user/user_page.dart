@@ -12,11 +12,9 @@ import 'package:library_book_app/src/view/shared/widgets/texts/sc_text_style.dar
 
 class UserPage extends StatefulWidget {
   const UserPage({Key? key}) : super(key: key);
-
   @override
   State<UserPage> createState() => _UserPageState();
 }
-
 class _UserPageState extends State<UserPage> {
   final _globalUserService = GlobalUserService();
 
@@ -33,16 +31,26 @@ class _UserPageState extends State<UserPage> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                padding: const EdgeInsets.symmetric(horizontal:50, vertical: 50),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     //round image
+                    SCTextStyle(
+                      text: '            Profile',
+                      fontSize: responsive.widthPercentage(8),
+                      fontFamily: 'Lora',
+                      fontWeight: FontWeight.w600,
+                    ),
+                    SizedBox(
+                      height:15,
+                    ),
                     Center(
+
                       child: Container(
-                        width: responsive.diagonalPercentage(15),
-                        height: responsive.diagonalPercentage(15),
+                        width: responsive.diagonalPercentage(14),
+                        height: responsive.diagonalPercentage(14),
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
@@ -52,20 +60,25 @@ class _UserPageState extends State<UserPage> {
                         ),
                       ),
                     ),
+
                     SizedBox(height: responsive.diagonalPercentage(4)),
                     SCTextStyle(
                       text: 'Email',
                       fontSize: responsive.widthPercentage(4),
                       fontFamily: 'Lora',
+
                     ),
                     SizedBox(height: responsive.diagonalPercentage(1)),
+
                     SCTextStyle(
                       text: snapshot.data!.email,
                       fontSize: responsive.widthPercentage(4),
                       hasBorder: true,
                     ),
+
                     SizedBox(height: responsive.diagonalPercentage(2)),
                     SCTextStyle(
+
                       text: 'Name',
                       fontSize: responsive.widthPercentage(4),
                       fontFamily: 'Lora',
@@ -76,6 +89,7 @@ class _UserPageState extends State<UserPage> {
                       fontSize: responsive.widthPercentage(4),
                       hasBorder: true,
                     ),
+
                     SizedBox(height: responsive.diagonalPercentage(2)),
                     SCTextStyle(
                       text: 'Surname',
@@ -88,6 +102,7 @@ class _UserPageState extends State<UserPage> {
                       fontSize: responsive.widthPercentage(4),
                       hasBorder: true,
                     ),
+
                     SizedBox(height: responsive.diagonalPercentage(2)),
                     SCTextStyle(
                       text: 'Address',
@@ -100,6 +115,7 @@ class _UserPageState extends State<UserPage> {
                       fontSize: responsive.widthPercentage(4),
                       hasBorder: true,
                     ),
+
                     SizedBox(height: responsive.diagonalPercentage(4)),
                     ScButtonIp(
                       text: 'Close Session',
