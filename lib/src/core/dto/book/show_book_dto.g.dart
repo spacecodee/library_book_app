@@ -7,16 +7,16 @@ part of 'show_book_dto.dart';
 // **************************************************************************
 
 ShowBookDto _$ShowBookDtoFromJson(Map<String, dynamic> json) => ShowBookDto(
-      author: json['author'] as String,
-      categoryName: json['categoryName'] as String,
-      description: json['description'] as String,
-      globalRating: json['globalRating'] as int,
-      id: json['id'] as int,
-      image: json['image'] as String,
-      name: json['name'] as String,
-      pages: json['pages'] as int,
-      pdf: json['pdf'] as String,
-      rating: json['rating'] as int,
+      author: json['author'] as String? ?? '',
+      categoryName: json['categoryName'] as String? ?? '',
+      description: json['description'] as String? ?? '',
+      globalRating: (json['globalRating'] as num?)?.toDouble() ?? 0,
+      id: json['id'] as int? ?? 0,
+      image: json['image'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      pages: json['pages'] as int? ?? 0,
+      pdf: json['pdf'] as String? ?? '',
+      rating: (json['rating'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$ShowBookDtoToJson(ShowBookDto instance) =>
