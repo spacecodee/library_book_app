@@ -1,11 +1,15 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:library_book_app/src/core/dto/people/people_dto.dart';
 import 'package:library_book_app/src/core/vo/user/client/user_client_vo.dart';
-import 'package:library_book_app/src/providers/checkbox_provider.dart';
+import 'package:library_book_app/src/routes/app_router.gr.dart';
+import 'package:library_book_app/src/service/auth/auth_service.dart';
+import 'package:library_book_app/src/shared/progress_dialog.dart';
+import 'package:library_book_app/src/shared/sc_colors.dart';
 import 'package:library_book_app/src/shared/sc_responsive.dart';
 import 'package:library_book_app/src/view/shared/widgets/buttons/sc_button_ip.dart';
-import 'package:library_book_app/src/view/shared/widgets/checkbox/sc_checkbox.dart';
 import 'package:library_book_app/src/view/shared/widgets/texts/sc_input_text.dart';
 import 'package:library_book_app/src/view/shared/widgets/texts/sc_text_style.dart';
 
@@ -15,6 +19,7 @@ class ScRegisterForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final myResponsive = SCResponsive.of(context);
+    final authService = AuthService();
     final nameController = TextEditingController();
     final lastnameController = TextEditingController();
     final emailController = TextEditingController();
@@ -111,26 +116,6 @@ class ScRegisterForm extends ConsumerWidget {
             isPassword: true,
           ),
           SizedBox(height: myResponsive.diagonalPercentage(3)),
-          Row(
-            children: [
-              ScCheckbox(
-                onTap: () {
-                  ref.read(checkboxProvider.notifier).changedCheckbox();
-                },
-                value: ref.watch(checkboxProvider),
-                size: myResponsive.widthPercentage(6.5),
-                borderSize: myResponsive.widthPercentage(0.5),
-                iconSize: myResponsive.widthPercentage(4.8),
-              ),
-              SizedBox(width: myResponsive.diagonalPercentage(1)),
-              SCTextStyle(
-                text: 'I agree to the Terms and Conditions',
-                fontSize: myResponsive.widthPercentage(4),
-                fontFamily: 'Lora',
-              ),
-            ],
-          ),
-          SizedBox(height: myResponsive.diagonalPercentage(1.5)),
           ScButtonIp(
             onTap: () {
               final peopleDto = PeopleDto(
@@ -143,9 +128,32 @@ class ScRegisterForm extends ConsumerWidget {
                 peopleDto: peopleDto,
                 username: usernameController.text.trim(),
               );
+              ProgressDialog.show(context);
 
-              //print(clientVo.toJson());
-              print('save');
+              authService.register(clientVo).then((value) {
+                if (value) {
+                  ProgressDialog.dismiss(context);
+                  context.router.pushAndPopUntil(
+                    const LoginRoute(),
+                    predicate: (route) => false,
+                  );
+                } else {
+                  ProgressDialog.dismiss(context);
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.error,
+                    autoHide: const Duration(seconds: 2),
+                    customHeader: const Icon(
+                      Icons.error_outline,
+                      color: SCColors.accent,
+                    ),
+                    dialogBackgroundColor: SCColors.error,
+                    animType: AnimType.rightSlide,
+                    title: 'Register Error',
+                    desc: 'An error has occurred, please try again',
+                  ).show();
+                }
+              });
             },
             text: 'Start Reading',
             fontFamily: 'Lora',

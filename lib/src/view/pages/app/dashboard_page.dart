@@ -32,8 +32,7 @@ class DashboardPage extends StatelessWidget {
               BottomNavigationBarItem(
                 label: 'User',
                 icon: Icon(Icons.person_pin, color: SCColors.accent),
-                activeIcon:
-                    Icon(Icons.person_pin_circle, color: SCColors.primary),
+                activeIcon: Icon(Icons.person_pin_circle, color: SCColors.primary),
               ),
             ],
           );

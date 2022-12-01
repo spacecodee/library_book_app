@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:library_book_app/src/service/token/authentication_service.dart';
 import 'package:library_book_app/src/routes/app_router.gr.dart';
+import 'package:library_book_app/src/service/auth/auth_service.dart';
+import 'package:library_book_app/src/service/token/authentication_service.dart';
 import 'package:library_book_app/src/shared/sc_responsive.dart';
 import 'package:library_book_app/src/view/shared/components/utils_components.dart';
 import 'package:library_book_app/src/view/shared/widgets/buttons/sc_button_ip.dart';
@@ -78,15 +79,29 @@ class _InitAppState extends State<InitApp> {
 
   Future<void> _checkSession() async {
     final authenticationClient = AuthenticationClient();
-    authenticationClient.isLoggedIn().then((value) {
-      if (value) {
-        context.router.pushAndPopUntil(
-          const EmptyRouterRoute(children: [
-            DashboardRoute(),
-          ]),
-          predicate: (route) => false,
-        );
+    final authService = AuthService();
+    final token = await authenticationClient.accessToken;
+
+    if (token.isNotEmpty) {
+      final tokenIsExpired = await authenticationClient.isTokenExpired(token);
+
+      if (tokenIsExpired) {
+        final newToken = await authService.refreshToken(token);
+        authenticationClient.saveSession(newToken);
       }
-    });
+    }
+
+    authenticationClient.isLoggedIn().then(
+      (value) async {
+        if (value) {
+          context.router.pushAndPopUntil(
+            const EmptyRouterRoute(children: [
+              DashboardRoute(),
+            ]),
+            predicate: (route) => false,
+          );
+        }
+      },
+    );
   }
 }
