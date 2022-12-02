@@ -30,108 +30,110 @@ class _UserPageState extends State<UserPage> {
           future: _globalUserService.getAccount(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal:50, vertical: 50),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    //round image
-                    SCTextStyle(
-                      text: '            Profile',
-                      fontSize: responsive.widthPercentage(8),
-                      fontFamily: 'Lora',
-                      fontWeight: FontWeight.w600,
-                    ),
-                    SizedBox(
-                      height:15,
-                    ),
-                    Center(
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:50, vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      //round image
+                      SCTextStyle(
+                        text: '            Profile',
+                        fontSize: responsive.widthPercentage(7.5),
+                        fontFamily: 'Lora',
+                        fontWeight: FontWeight.w600,
+                      ),
+                      SizedBox(
+                        height:10,
+                      ),
+                      Center(
 
-                      child: Container(
-                        width: responsive.diagonalPercentage(14),
-                        height: responsive.diagonalPercentage(14),
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: NetworkImage('https://picsum.photos/150'),
-                            fit: BoxFit.cover,
+                        child: Container(
+                          width: responsive.diagonalPercentage(14),
+                          height: responsive.diagonalPercentage(14),
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: NetworkImage('https://picsum.photos/150'),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
-                    ),
 
-                    SizedBox(height: responsive.diagonalPercentage(4)),
-                    SCTextStyle(
-                      text: 'Email',
-                      fontSize: responsive.widthPercentage(4),
-                      fontFamily: 'Lora',
+                      SizedBox(height: responsive.diagonalPercentage(4)),
+                      SCTextStyle(
+                        text: 'Email',
+                        fontSize: responsive.widthPercentage(4),
+                        fontFamily: 'Lora',
 
-                    ),
-                    SizedBox(height: responsive.diagonalPercentage(1)),
+                      ),
+                      SizedBox(height: responsive.diagonalPercentage(1)),
 
-                    SCTextStyle(
-                      text: snapshot.data!.email,
-                      fontSize: responsive.widthPercentage(4),
-                      hasBorder: true,
-                    ),
+                      SCTextStyle(
+                        text: snapshot.data!.email,
+                        fontSize: responsive.widthPercentage(4),
+                        hasBorder: true,
+                      ),
 
-                    SizedBox(height: responsive.diagonalPercentage(2)),
-                    SCTextStyle(
+                      SizedBox(height: responsive.diagonalPercentage(2)),
+                      SCTextStyle(
 
-                      text: 'Name',
-                      fontSize: responsive.widthPercentage(4),
-                      fontFamily: 'Lora',
-                    ),
-                    SizedBox(height: responsive.diagonalPercentage(1)),
-                    SCTextStyle(
-                      text: snapshot.data!.name,
-                      fontSize: responsive.widthPercentage(4),
-                      hasBorder: true,
-                    ),
+                        text: 'Name',
+                        fontSize: responsive.widthPercentage(4),
+                        fontFamily: 'Lora',
+                      ),
+                      SizedBox(height: responsive.diagonalPercentage(1)),
+                      SCTextStyle(
+                        text: snapshot.data!.name,
+                        fontSize: responsive.widthPercentage(4),
+                        hasBorder: true,
+                      ),
 
-                    SizedBox(height: responsive.diagonalPercentage(2)),
-                    SCTextStyle(
-                      text: 'Surname',
-                      fontSize: responsive.widthPercentage(4),
-                      fontFamily: 'Lora',
-                    ),
-                    SizedBox(height: responsive.diagonalPercentage(1)),
-                    SCTextStyle(
-                      text: snapshot.data!.surname,
-                      fontSize: responsive.widthPercentage(4),
-                      hasBorder: true,
-                    ),
+                      SizedBox(height: responsive.diagonalPercentage(2)),
+                      SCTextStyle(
+                        text: 'Surname',
+                        fontSize: responsive.widthPercentage(4),
+                        fontFamily: 'Lora',
+                      ),
+                      SizedBox(height: responsive.diagonalPercentage(1)),
+                      SCTextStyle(
+                        text: snapshot.data!.surname,
+                        fontSize: responsive.widthPercentage(4),
+                        hasBorder: true,
+                      ),
 
-                    SizedBox(height: responsive.diagonalPercentage(2)),
-                    SCTextStyle(
-                      text: 'Address',
-                      fontSize: responsive.widthPercentage(4),
-                      fontFamily: 'Lora',
-                    ),
-                    SizedBox(height: responsive.diagonalPercentage(1)),
-                    SCTextStyle(
-                      text: snapshot.data!.address,
-                      fontSize: responsive.widthPercentage(4),
-                      hasBorder: true,
-                    ),
+                      SizedBox(height: responsive.diagonalPercentage(2)),
+                      SCTextStyle(
+                        text: 'Address',
+                        fontSize: responsive.widthPercentage(4),
+                        fontFamily: 'Lora',
+                      ),
+                      SizedBox(height: responsive.diagonalPercentage(1)),
+                      SCTextStyle(
+                        text: snapshot.data!.address,
+                        fontSize: responsive.widthPercentage(4),
+                        hasBorder: true,
+                      ),
 
-                    SizedBox(height: responsive.diagonalPercentage(4)),
-                    ScButtonIp(
-                      text: 'Close Session',
-                      fontSize: responsive.widthPercentage(4),
-                      onTap: () {
-                        ProgressDialog.show(context);
-                        tokenService.logOut().then((value) {
-                          ProgressDialog.dismiss(context);
-                          context.router.pushAndPopUntil(
-                            const InitApp(),
-                            predicate: (route) => false,
-                          );
-                        });
-                      },
-                    ),
-                  ],
+                      SizedBox(height: responsive.diagonalPercentage(4)),
+                      ScButtonIp(
+                        text: 'Close Session',
+                        fontSize: responsive.widthPercentage(4),
+                        onTap: () {
+                          ProgressDialog.show(context);
+                          tokenService.logOut().then((value) {
+                            ProgressDialog.dismiss(context);
+                            context.router.pushAndPopUntil(
+                              const InitApp(),
+                              predicate: (route) => false,
+                            );
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               );
             } else {
