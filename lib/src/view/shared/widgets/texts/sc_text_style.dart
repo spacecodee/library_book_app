@@ -27,9 +27,13 @@ class SCTextStyle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       //border radius
-      decoration: (hasBorder) ? BoxDecoration(
-        border: Border.all(color: SCColors.accent.withOpacity(0.5)),
-        borderRadius: BorderRadius.circular(5),
+      decoration: (hasBorder) ?
+      BoxDecoration(
+        border: Border(bottom: BorderSide(color: Colors.white70, width: 4,)
+        )
+       // border: Border.all(color: SCColors.accent.withOpacity(0.5)),
+       // borderRadius: BorderRadius.circular(2),
+
       ) : null,
       child: Padding(
         padding: (hasBorder) ? const EdgeInsets.all(8.0) : const EdgeInsets.all(0),
@@ -41,6 +45,7 @@ class SCTextStyle extends StatelessWidget {
             fontFamily: fontFamily,
             fontWeight: fontWeight,
             color: color,
+
           ),
         ),
       ),

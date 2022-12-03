@@ -18,7 +18,7 @@ class RegisterPage extends StatelessWidget {
           //gradient
           decoration: UtilsComponents.getBoxDecoration(),
           width: double.infinity,
-          height: myResponsive.heightPercentage(102),
+          height: myResponsive.heightPercentage(145),
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),

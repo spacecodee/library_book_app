@@ -50,8 +50,7 @@ class _BookInfoPageState extends State<BookInfoPage> {
       ),
       dialogBackgroundColor: SCColors.primary,
       animType: AnimType.rightSlide,
-      title: 'Rating Book',
-      desc: 'Rating successfully added or updated',
+      title: 'Rating successfully added',
     );
     AuthenticationClient().isSomeone('ROLE_STUDENT').then((value) {
       isClient = value;

@@ -47,32 +47,34 @@ class _ViewPdfPageState extends State<ViewPdfPage> {
               );
             },
           ),
-          actions: <Widget>[
+          actions: [
             IconButton(
-                onPressed: () {
-                  _pdfViewerController.jumpToPage(1);
-                },
-                icon: const Icon(
-                  Icons.arrow_drop_down_circle,
-                  color: SCColors.accent,
-                )),
-            IconButton(
+              onPressed: () {
+                _pdfViewerController.jumpToPage(1);
+              },
               icon: const Icon(
-                Icons.settings,
+                Icons.arrow_drop_down_circle,
                 color: SCColors.accent,
               ),
-              onPressed: () {
-                // do something
-              },
             ),
             IconButton(
-                onPressed: () {
-                  _pdfViewerController.zoomLevel = 1.25;
-                },
-                icon: const Icon(
-                  Icons.zoom_in,
-                  color: SCColors.accent,
-                ))
+              onPressed: () {
+                _pdfViewerController.zoomLevel += 1;
+              },
+              icon: const Icon(
+                Icons.zoom_in,
+                color: SCColors.accent,
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                _pdfViewerController.zoomLevel -= 1;
+              },
+              icon: const Icon(
+                Icons.zoom_out,
+                color: SCColors.accent,
+              ),
+            )
           ],
         ),
         body: SfPdfViewer.network(
