@@ -47,6 +47,7 @@ class _ScLoginFormState extends State<ScLoginForm> {
               if (value!.trim().isEmpty) {
                 return 'Username is required';
               }
+              return null;
             },
             padding: EdgeInsets.symmetric(
               horizontal: myResponsive.diagonalPercentage(2),
@@ -69,6 +70,7 @@ class _ScLoginFormState extends State<ScLoginForm> {
               if (value!.trim().isEmpty) {
                 return 'Password is required';
               }
+              return null;
             },
             padding: EdgeInsets.symmetric(
               horizontal: myResponsive.diagonalPercentage(2),
@@ -111,8 +113,7 @@ class _ScLoginFormState extends State<ScLoginForm> {
                       ),
                       dialogBackgroundColor: SCColors.error,
                       animType: AnimType.rightSlide,
-                      title: 'Login Error',
-                      desc: 'Username or password is incorrect',
+                      title: 'Username or password is incorrect',
                     ).show();
                   }
                 });

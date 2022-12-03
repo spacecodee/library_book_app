@@ -18,8 +18,7 @@ class ScRegisterForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    String email;
-    final _fromKey= GlobalKey<FormState>();
+    final fromKey = GlobalKey<FormState>();
     final myResponsive = SCResponsive.of(context);
     final authService = AuthService();
     final nameController = TextEditingController();
@@ -29,7 +28,7 @@ class ScRegisterForm extends ConsumerWidget {
     final passwordController = TextEditingController();
 
     return Form(
-      key: _fromKey,
+      key: fromKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,12 +41,11 @@ class ScRegisterForm extends ConsumerWidget {
           SCInputText(
             controller: nameController,
             validator: (value) {
-              if (value!.isEmpty)  {
-                return 'first name requerid' ;
+              if (value!.isEmpty) {
+                return 'first name requerid';
               }
-
+              return null;
             },
-
             padding: EdgeInsets.symmetric(
               horizontal: myResponsive.diagonalPercentage(2),
               vertical: 0,
@@ -69,6 +67,7 @@ class ScRegisterForm extends ConsumerWidget {
               if (value!.isEmpty) {
                 return 'last is required';
               }
+              return null;
             },
             padding: EdgeInsets.symmetric(
               horizontal: myResponsive.diagonalPercentage(2),
@@ -91,8 +90,7 @@ class ScRegisterForm extends ConsumerWidget {
               if (value!.isEmpty) {
                 return 'email is required';
               }
-              if(!RegExp("^[a-zA-Z0-0+_.-]+@[a-zA-Z0-9.-]+[a-z]").hasMatch(value))
-              {
+              if (!RegExp("^[a-zA-Z0-0+_.-]+@[a-zA-Z0-9.-]+[a-z]").hasMatch(value)) {
                 return "Please enter valid email";
               }
               return null;
@@ -119,6 +117,7 @@ class ScRegisterForm extends ConsumerWidget {
               if (value!.isEmpty) {
                 return 'username is required';
               }
+              return null;
             },
             padding: EdgeInsets.symmetric(
               horizontal: myResponsive.diagonalPercentage(2),
@@ -139,11 +138,11 @@ class ScRegisterForm extends ConsumerWidget {
           SCInputText(
             controller: passwordController,
             validator: (value) {
-              if (value!.isNotEmpty && value.length>3) {
+              if (value!.isNotEmpty && value.length > 3) {
                 return null;
-              }else if(value.length<4 && value.isNotEmpty){
+              } else if (value.length < 4 && value.isNotEmpty) {
                 return 'No way your passwors is taht short';
-              }else{
+              } else {
                 return 'password requerid';
               }
             },
@@ -160,7 +159,7 @@ class ScRegisterForm extends ConsumerWidget {
           SizedBox(height: myResponsive.diagonalPercentage(3)),
           ScButtonIp(
             onTap: () {
-              if (_fromKey.currentState!.validate()) {
+              if (fromKey.currentState!.validate()) {
                 ProgressDialog.show(context);
                 final peopleDto = PeopleDto(
                   name: nameController.text.trim(),
@@ -172,7 +171,6 @@ class ScRegisterForm extends ConsumerWidget {
                   peopleDto: peopleDto,
                   username: usernameController.text.trim(),
                 );
-
 
                 authService.register(clientVo).then((value) {
                   if (value) {
@@ -193,8 +191,7 @@ class ScRegisterForm extends ConsumerWidget {
                       ),
                       dialogBackgroundColor: SCColors.error,
                       animType: AnimType.rightSlide,
-                      title: 'Register Error',
-                      desc: 'An error has occurred, please try again',
+                      title: 'Username or email already exist',
                     ).show();
                   }
                 });
