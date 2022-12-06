@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
 
     return FutureBuilder<List<CategoryBookAndBookDto>>(
       future: categoryBookService.list(),
-      builder: (context, snapshot) {
+      builder: (_, snapshot) {
         if (!snapshot.hasData) {
           return Container(
             color: SCColors.secondary,

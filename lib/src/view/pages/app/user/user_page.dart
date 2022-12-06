@@ -39,7 +39,7 @@ class _UserPageState extends State<UserPage> {
                     children: [
                       //round image
                       SCTextStyle(
-                        text: '            Profile',
+                        text: 'Profile',
                         fontSize: responsive.widthPercentage(7.5),
                         fontFamily: 'Lora',
                         fontWeight: FontWeight.w600,
@@ -48,7 +48,6 @@ class _UserPageState extends State<UserPage> {
                         height:10,
                       ),
                       Center(
-
                         child: Container(
                           width: responsive.diagonalPercentage(14),
                           height: responsive.diagonalPercentage(14),
@@ -67,19 +66,15 @@ class _UserPageState extends State<UserPage> {
                         text: 'Email',
                         fontSize: responsive.widthPercentage(4),
                         fontFamily: 'Lora',
-
                       ),
                       SizedBox(height: responsive.diagonalPercentage(1)),
-
                       SCTextStyle(
                         text: snapshot.data!.email,
                         fontSize: responsive.widthPercentage(4),
                         hasBorder: true,
                       ),
-
                       SizedBox(height: responsive.diagonalPercentage(2)),
                       SCTextStyle(
-
                         text: 'Name',
                         fontSize: responsive.widthPercentage(4),
                         fontFamily: 'Lora',
@@ -90,7 +85,6 @@ class _UserPageState extends State<UserPage> {
                         fontSize: responsive.widthPercentage(4),
                         hasBorder: true,
                       ),
-
                       SizedBox(height: responsive.diagonalPercentage(2)),
                       SCTextStyle(
                         text: 'Surname',
